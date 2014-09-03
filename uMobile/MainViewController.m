@@ -34,8 +34,6 @@
 #pragma mark - View Controller Lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self handleNetworkChanges];
-
     if (self.mostRecentlySelectedIndexPath) {
         [self.tableView deselectRowAtIndexPath:self.mostRecentlySelectedIndexPath animated:YES];
     }
@@ -247,7 +245,6 @@
         if ([self networkIsReachable]) {
             if ([portletViewController.navigationItem.rightBarButtonItems
                  containsObject:portletViewController.loggingInBarButtonItem]) {
-                // Network was dead when starting the app with Remember Me enabled; resume that process
                 [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
             } else if ([portletViewController.navigationItem.rightBarButtonItems count] == 0) {
                 [self configureView];
