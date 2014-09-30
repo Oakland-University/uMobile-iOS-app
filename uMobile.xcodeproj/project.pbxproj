@@ -28,7 +28,6 @@
 		B59B7E5C18C66910007C1FBD /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B7E5A18C66910007C1FBD /* NJKWebViewProgressView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
 		B5AAC994191D028400F6DDA7 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AAC993191D028400F6DDA7 /* InfoViewController.m */; };
 		B5AC41A81906BFD100E78E34 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AC41A71906BFD100E78E34 /* Constants.m */; };
-		B5B302A018E09C0E000A3799 /* Warnings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B5B3029F18E09C0E000A3799 /* Warnings.xcconfig */; };
 		B5B86625191ABB1100C9F460 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B86624191ABB1100C9F460 /* HeaderView.m */; };
 		B5DC2DAC18DA0D4C001F0579 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DC2DAB18DA0D4C001F0579 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
 		B5E3559219118C8700AD7506 /* Authenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3559119118C8700AD7506 /* Authenticator.m */; };
@@ -73,7 +72,6 @@
 		B5AAC992191D028300F6DDA7 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		B5AAC993191D028400F6DDA7 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		B5AC41A71906BFD100E78E34 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Constants.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		B5B3029F18E09C0E000A3799 /* Warnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = SOURCE_ROOT; };
 		B5B86623191ABB1100C9F460 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		B5B86624191ABB1100C9F460 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		B5DC2DAA18DA0D4C001F0579 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 		22186CFB183D86A5005E42AC = {
 			isa = PBXGroup;
 			children = (
-				B5B3029F18E09C0E000A3799 /* Warnings.xcconfig */,
 				22186D0D183D86A5005E42AC /* uMobile */,
 				22186D06183D86A5005E42AC /* Frameworks */,
 				22186D05183D86A5005E42AC /* Products */,
@@ -275,7 +272,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				22186D23183D86A5005E42AC /* Images.xcassets in Resources */,
-				B5B302A018E09C0E000A3799 /* Warnings.xcconfig in Resources */,
 				22186D12183D86A5005E42AC /* InfoPlist.strings in Resources */,
 				B58AF2141964A2130023731F /* Main_iPad.storyboard in Resources */,
 				B5F9795118D8CDEA001B48A1 /* Other Services Portlets.plist in Resources */,
@@ -333,7 +329,6 @@
 /* Begin XCBuildConfiguration section */
 		22186D37183D86A5005E42AC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5B3029F18E09C0E000A3799 /* Warnings.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -372,7 +367,6 @@
 		};
 		22186D38183D86A5005E42AC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5B3029F18E09C0E000A3799 /* Warnings.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
