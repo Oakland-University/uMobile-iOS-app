@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Oakland University. All rights reserved.
 //
 
-#import "JSON.h"
+#import "LayoutJSON.h"
 
-@implementation JSON
+@implementation LayoutJSON
 
 static NSDictionary *dictJSON;
 

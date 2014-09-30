@@ -14,7 +14,7 @@
 #import "NJKWebViewProgress.h"
 #import "Reachability.h"
 #import "KeychainItemWrapper.h"
-#import "JSON.h"
+#import "LayoutJSON.h"
 
 @interface PortletViewController ()
 
@@ -456,8 +456,8 @@
         for (NSHTTPCookie *cookie in cookies) {
             if ([cookie.name isEqualToString:@"JSESSIONID"]) {
                 // Check if the user is still logged in by reading layout.json
-                [JSON downloadLayoutJSON];
-                if (![[JSON getLayoutJSON][@"username"] isEqualToString:@"guest"]) {
+                [LayoutJSON downloadLayoutJSON];
+                if (![[LayoutJSON getLayoutJSON][@"username"] isEqualToString:@"guest"]) {
                     validSession = YES;
                     break;
                 }

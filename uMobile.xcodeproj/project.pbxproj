@@ -19,7 +19,7 @@
 		22186D23183D86A5005E42AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22186D22183D86A5005E42AC /* Images.xcassets */; };
 		22186D41183D8859005E42AC /* TableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D40183D8859005E42AC /* TableCell.m */; };
 		229EE3F218989533004EAACB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 229EE3F118989533004EAACB /* Reachability.m */; };
-		752698E618DC7C33002234FC /* JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 752698E518DC7C33002234FC /* JSON.m */; };
+		752698E618DC7C33002234FC /* LayoutJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 752698E518DC7C33002234FC /* LayoutJSON.m */; };
 		75D3A09918BE9741008D7239 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D3A09818BE9741008D7239 /* LoginViewController.m */; };
 		75E5AF1F18C52B4400CF6EBE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E5AF1E18C52B4400CF6EBE /* libxml2.dylib */; };
 		B52E8EC9195DEFDC001363D2 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = B52E8EC8195DEFDC001363D2 /* NSString+URLEncoding.m */; };
@@ -56,8 +56,8 @@
 		22186D40183D8859005E42AC /* TableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		229EE3F018989533004EAACB /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		229EE3F118989533004EAACB /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		752698E418DC7C33002234FC /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = JSON.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		752698E518DC7C33002234FC /* JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = JSON.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		752698E418DC7C33002234FC /* LayoutJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LayoutJSON.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		752698E518DC7C33002234FC /* LayoutJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LayoutJSON.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		75D3A09718BE9741008D7239 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LoginViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		75D3A09818BE9741008D7239 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LoginViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		75E5AF1E18C52B4400CF6EBE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -226,8 +226,8 @@
 				B5E3559119118C8700AD7506 /* Authenticator.m */,
 				FCC051FB19DB60530031A838 /* ConfigChecker.h */,
 				FCC051FC19DB60530031A838 /* ConfigChecker.m */,
-				752698E418DC7C33002234FC /* JSON.h */,
-				752698E518DC7C33002234FC /* JSON.m */,
+				752698E418DC7C33002234FC /* LayoutJSON.h */,
+				752698E518DC7C33002234FC /* LayoutJSON.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 				229EE3F218989533004EAACB /* Reachability.m in Sources */,
 				B5B86625191ABB1100C9F460 /* HeaderView.m in Sources */,
 				B5AAC994191D028400F6DDA7 /* InfoViewController.m in Sources */,
-				752698E618DC7C33002234FC /* JSON.m in Sources */,
+				752698E618DC7C33002234FC /* LayoutJSON.m in Sources */,
 				B5DC2DAC18DA0D4C001F0579 /* KeychainItemWrapper.m in Sources */,
 				B59B7E5C18C66910007C1FBD /* NJKWebViewProgressView.m in Sources */,
 				22186D14183D86A5005E42AC /* main.m in Sources */,

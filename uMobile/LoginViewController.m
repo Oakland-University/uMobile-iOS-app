@@ -11,7 +11,7 @@
 #import "Authenticator.h"
 #import "KeychainItemWrapper.h"
 #import "PortletViewController.h"
-#import "JSON.h"
+#import "LayoutJSON.h"
 
 @interface LoginViewController ()
 

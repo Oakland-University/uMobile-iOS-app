@@ -11,7 +11,7 @@
 
 #import "Authenticator.h"
 #import "ConfigChecker.h"
-#import "JSON.h"
+#import "LayoutJSON.h"
 
 #import "Reachability.h"
 #import "HeaderView.h"
@@ -111,8 +111,8 @@
 }
 
 - (void)configureView {
-    [JSON downloadLayoutJSON];
-    NSDictionary *dictJSON = [JSON getLayoutJSON];
+    [LayoutJSON downloadLayoutJSON];
+    NSDictionary *dictJSON = [LayoutJSON getLayoutJSON];
     if (!dictJSON) { return; } // network unreachable
 
     // Build the rows of the table view from the JSON feed
