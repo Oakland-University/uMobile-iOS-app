@@ -18,20 +18,21 @@
 		22186D21183D86A5005E42AC /* PortletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D20183D86A5005E42AC /* PortletViewController.m */; };
 		22186D23183D86A5005E42AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22186D22183D86A5005E42AC /* Images.xcassets */; };
 		22186D41183D8859005E42AC /* TableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D40183D8859005E42AC /* TableCell.m */; };
-		229EE3F218989533004EAACB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 229EE3F118989533004EAACB /* Reachability.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
+		229EE3F218989533004EAACB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 229EE3F118989533004EAACB /* Reachability.m */; };
 		752698E618DC7C33002234FC /* JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 752698E518DC7C33002234FC /* JSON.m */; };
 		75D3A09918BE9741008D7239 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D3A09818BE9741008D7239 /* LoginViewController.m */; };
 		75E5AF1F18C52B4400CF6EBE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E5AF1E18C52B4400CF6EBE /* libxml2.dylib */; };
 		B52E8EC9195DEFDC001363D2 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = B52E8EC8195DEFDC001363D2 /* NSString+URLEncoding.m */; };
 		B58AF2141964A2130023731F /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58AF2131964A2130023731F /* Main_iPad.storyboard */; };
-		B59B7E5B18C66910007C1FBD /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B7E5818C66910007C1FBD /* NJKWebViewProgress.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
-		B59B7E5C18C66910007C1FBD /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B7E5A18C66910007C1FBD /* NJKWebViewProgressView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
+		B59B7E5B18C66910007C1FBD /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B7E5818C66910007C1FBD /* NJKWebViewProgress.m */; };
+		B59B7E5C18C66910007C1FBD /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B7E5A18C66910007C1FBD /* NJKWebViewProgressView.m */; };
 		B5AAC994191D028400F6DDA7 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AAC993191D028400F6DDA7 /* InfoViewController.m */; };
 		B5AC41A81906BFD100E78E34 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AC41A71906BFD100E78E34 /* Constants.m */; };
 		B5B86625191ABB1100C9F460 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B86624191ABB1100C9F460 /* HeaderView.m */; };
-		B5DC2DAC18DA0D4C001F0579 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DC2DAB18DA0D4C001F0579 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
+		B5DC2DAC18DA0D4C001F0579 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DC2DAB18DA0D4C001F0579 /* KeychainItemWrapper.m */; };
 		B5E3559219118C8700AD7506 /* Authenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3559119118C8700AD7506 /* Authenticator.m */; };
 		B5F9795118D8CDEA001B48A1 /* Other Services Portlets.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */; };
+		FCC051FD19DB60530031A838 /* ConfigChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC051FC19DB60530031A838 /* ConfigChecker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,8 @@
 		B5E3559019118C8700AD7506 /* Authenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Authenticator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5E3559119118C8700AD7506 /* Authenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Authenticator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Other Services Portlets.plist"; sourceTree = "<group>"; };
+		FCC051FB19DB60530031A838 /* ConfigChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigChecker.h; sourceTree = "<group>"; };
+		FCC051FC19DB60530031A838 /* ConfigChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigChecker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +184,6 @@
 		75908F3518DC9C2A007861B7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B515F5791964A7D7007B37F8 /* PortletSelectionDelegate.h */,
 				22186D1C183D86A5005E42AC /* MainViewController.h */,
 				22186D1D183D86A5005E42AC /* MainViewController.m */,
 				75D3A09718BE9741008D7239 /* LoginViewController.h */,
@@ -190,10 +192,7 @@
 				22186D20183D86A5005E42AC /* PortletViewController.m */,
 				B5AAC992191D028300F6DDA7 /* InfoViewController.h */,
 				B5AAC993191D028400F6DDA7 /* InfoViewController.m */,
-				B5E3559019118C8700AD7506 /* Authenticator.h */,
-				B5E3559119118C8700AD7506 /* Authenticator.m */,
-				752698E418DC7C33002234FC /* JSON.h */,
-				752698E518DC7C33002234FC /* JSON.m */,
+				FCC051FE19DB60620031A838 /* Helpers */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -218,6 +217,20 @@
 			);
 			path = KeychainItemWrapper;
 			sourceTree = SOURCE_ROOT;
+		};
+		FCC051FE19DB60620031A838 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B515F5791964A7D7007B37F8 /* PortletSelectionDelegate.h */,
+				B5E3559019118C8700AD7506 /* Authenticator.h */,
+				B5E3559119118C8700AD7506 /* Authenticator.m */,
+				FCC051FB19DB60530031A838 /* ConfigChecker.h */,
+				FCC051FC19DB60530031A838 /* ConfigChecker.m */,
+				752698E418DC7C33002234FC /* JSON.h */,
+				752698E518DC7C33002234FC /* JSON.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -245,7 +258,7 @@
 		22186CFC183D86A5005E42AC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = uMobile;
 			};
 			buildConfigurationList = 22186CFF183D86A5005E42AC /* Build configuration list for PBXProject "uMobile" */;
@@ -301,6 +314,7 @@
 				22186D14183D86A5005E42AC /* main.m in Sources */,
 				22186D41183D8859005E42AC /* TableCell.m in Sources */,
 				B52E8EC9195DEFDC001363D2 /* NSString+URLEncoding.m in Sources */,
+				FCC051FD19DB60530031A838 /* ConfigChecker.m in Sources */,
 				22186D21183D86A5005E42AC /* PortletViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

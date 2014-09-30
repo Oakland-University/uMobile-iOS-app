@@ -7,12 +7,14 @@
 //
 
 #import "MainViewController.h"
+#import "PortletViewController.h"
 
 #import "Authenticator.h"
-#import "HeaderView.h"
-#import "PortletViewController.h"
-#import "Reachability.h"
+#import "ConfigChecker.h"
 #import "JSON.h"
+
+#import "Reachability.h"
+#import "HeaderView.h"
 
 @interface MainViewController ()
 
@@ -58,6 +60,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [[[ConfigChecker alloc] init] check];
 
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
         // iOS >= 7
