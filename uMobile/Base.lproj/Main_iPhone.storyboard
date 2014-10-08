@@ -36,9 +36,41 @@
                     <view key="view" contentMode="scaleToFill" id="0Xh-zl-WG5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNE-dT-YxU">
+                                <rect key="frame" x="87" y="72" width="147" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Go To App Store">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToAppStoreTapped:" destination="LUO-Z8-5lb" eventType="touchUpInside" id="HoO-zB-qrd"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkZ-D2-fsN">
+                                <rect key="frame" x="16" y="108" width="288" height="452"/>
+                                <string key="text">Unfortunately, the current version of this app is out of date and must be updated. Please visit the App Store to download the new version.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aNE-dT-YxU" firstAttribute="top" secondItem="LN3-ej-u6k" secondAttribute="bottom" constant="8" id="EaS-KR-TgC"/>
+                            <constraint firstItem="qkZ-D2-fsN" firstAttribute="leading" secondItem="0Xh-zl-WG5" secondAttribute="leading" constant="16" id="QDo-3C-kUP"/>
+                            <constraint firstAttribute="centerX" secondItem="aNE-dT-YxU" secondAttribute="centerX" constant="-0.5" id="f0D-l2-exF"/>
+                            <constraint firstItem="qkZ-D2-fsN" firstAttribute="top" secondItem="aNE-dT-YxU" secondAttribute="bottom" id="qUo-3d-79N"/>
+                            <constraint firstItem="CtP-7o-ZdG" firstAttribute="top" secondItem="qkZ-D2-fsN" secondAttribute="bottom" constant="8" id="xZ6-eA-JgH"/>
+                            <constraint firstAttribute="trailing" secondItem="qkZ-D2-fsN" secondAttribute="trailing" constant="16" id="yAp-5f-3K1"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ImJ-zm-vfD"/>
+                    <connections>
+                        <outlet property="appStoreButton" destination="aNE-dT-YxU" id="xkF-qa-iaF"/>
+                        <outlet property="upgradeRequiredTextView" destination="qkZ-D2-fsN" id="aaW-PU-yLh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwW-7M-1Lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
