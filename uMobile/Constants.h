@@ -45,6 +45,7 @@ FOUNDATION_EXPORT NSString *const kLogoutFailureNotification;
 FOUNDATION_EXPORT NSString *const kUserAgent;
 FOUNDATION_EXPORT NSString *const kUPortalCredentials;
 FOUNDATION_EXPORT NSString *const kLoggingInText;
+FOUNDATION_EXPORT NSString *const kUpgradeRequiredViewControllerIdentifier;
 FOUNDATION_EXPORT NSString *const kCasLogin;
 FOUNDATION_EXPORT BOOL const kShouldRunConfigCheck;
 

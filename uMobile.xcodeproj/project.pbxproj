@@ -32,6 +32,7 @@
 		B5DC2DAC18DA0D4C001F0579 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DC2DAB18DA0D4C001F0579 /* KeychainItemWrapper.m */; };
 		B5E3559219118C8700AD7506 /* Authenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3559119118C8700AD7506 /* Authenticator.m */; };
 		B5F9795118D8CDEA001B48A1 /* Other Services Portlets.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */; };
+		FC53FC5019E5DFD400FEBE73 /* UpgradeRequiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC53FC4F19E5DFD400FEBE73 /* UpgradeRequiredViewController.m */; };
 		FCC051FD19DB60530031A838 /* ConfigChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC051FC19DB60530031A838 /* ConfigChecker.m */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,8 @@
 		B5E3559019118C8700AD7506 /* Authenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Authenticator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B5E3559119118C8700AD7506 /* Authenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Authenticator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Other Services Portlets.plist"; sourceTree = "<group>"; };
+		FC53FC4E19E5DFD400FEBE73 /* UpgradeRequiredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeRequiredViewController.h; sourceTree = "<group>"; };
+		FC53FC4F19E5DFD400FEBE73 /* UpgradeRequiredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeRequiredViewController.m; sourceTree = "<group>"; };
 		FCC051FB19DB60530031A838 /* ConfigChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigChecker.h; sourceTree = "<group>"; };
 		FCC051FC19DB60530031A838 /* ConfigChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigChecker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,6 +195,8 @@
 				22186D20183D86A5005E42AC /* PortletViewController.m */,
 				B5AAC992191D028300F6DDA7 /* InfoViewController.h */,
 				B5AAC993191D028400F6DDA7 /* InfoViewController.m */,
+				FC53FC4E19E5DFD400FEBE73 /* UpgradeRequiredViewController.h */,
+				FC53FC4F19E5DFD400FEBE73 /* UpgradeRequiredViewController.m */,
 				FCC051FE19DB60620031A838 /* Helpers */,
 			);
 			name = Controller;
@@ -299,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC53FC5019E5DFD400FEBE73 /* UpgradeRequiredViewController.m in Sources */,
 				75D3A09918BE9741008D7239 /* LoginViewController.m in Sources */,
 				22186D18183D86A5005E42AC /* AppDelegate.m in Sources */,
 				B5E3559219118C8700AD7506 /* Authenticator.m in Sources */,

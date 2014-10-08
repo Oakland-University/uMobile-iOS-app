@@ -61,6 +61,7 @@ NSString *const kLogoutFailureNotification = @"Logout Failure";
 NSString *const kUserAgent = @"iPhone";
 NSString *const kUPortalCredentials = @"uPortalCredentials";
 NSString *const kLoggingInText = @"Logging In";
+NSString *const kUpgradeRequiredViewControllerIdentifier = @"upgradeRequiredNavigationController";
 
 // The URL associated with the JSESSIONID cookie
 NSString *const kCasLogin = @"/cas/login?service=";

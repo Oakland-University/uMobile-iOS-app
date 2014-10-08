@@ -48,6 +48,13 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     self.mostRecentlySelectedIndexPath = nil;
+
+    if (![ConfigChecker sharedChecker].isUpgradeRequired) {
+        UIViewController *upgradeRequiredViewController =
+        [self.storyboard instantiateViewControllerWithIdentifier:kUpgradeRequiredViewControllerIdentifier];
+        UINavigationController *navigationController = self.navigationController;
+        [navigationController presentViewController:upgradeRequiredViewController animated:YES completion:nil];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -93,6 +100,10 @@
                                                                      target:nil
                                                                      action:nil];
     self.loggingInBarButtonItem.enabled = NO;
+
+    if (![[ConfigChecker sharedChecker] isUpgradeRequired]) {
+        return;
+    }
 
     if ([[Authenticator sharedAuthenticator] hasStoredCredentials]) {
         if (!self.splitViewController) {

@@ -23,7 +23,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-283" y="-1196"/>
+            <point key="canvasLocation" x="-389" y="-1196"/>
+        </scene>
+        <!--Upgrade Required View Controller-->
+        <scene sceneID="uah-fC-wWC">
+            <objects>
+                <viewController id="LUO-Z8-5lb" customClass="UpgradeRequiredViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LN3-ej-u6k"/>
+                        <viewControllerLayoutGuide type="bottom" id="CtP-7o-ZdG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Xh-zl-WG5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ImJ-zm-vfD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iwW-7M-1Lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="678" y="-1916"/>
         </scene>
         <!--Master-->
         <scene sceneID="VgW-fR-Quf">
@@ -186,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="636" y="-1196"/>
+            <point key="canvasLocation" x="678" y="-1196"/>
         </scene>
         <!--Detail-->
         <scene sceneID="2FQ-0D-5fz">
@@ -312,7 +331,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l6p-aS-KvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1113" y="-422"/>
+            <point key="canvasLocation" x="1155" y="-422"/>
         </scene>
         <!--uMobile-->
         <scene sceneID="rjI-9w-wHd">
@@ -402,7 +421,25 @@ It looks best with a couple paragraphs worth of text.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hty-mV-I5C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="636" y="-422"/>
+            <point key="canvasLocation" x="678" y="-422"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dSt-MO-YSt">
+            <objects>
+                <navigationController storyboardIdentifier="upgradeRequiredNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="5La-vh-so6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="giY-jl-jiY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LUO-Z8-5lb" kind="relationship" relationship="rootViewController" id="8GU-A2-4wW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oei-Yj-bjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="146" y="-1916"/>
         </scene>
     </scenes>
     <resources>
