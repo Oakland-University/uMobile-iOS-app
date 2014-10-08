@@ -18,17 +18,21 @@
 
 @implementation ConfigChecker
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-        NSString *appVersion = info[@"CFBundleVersion"];
-        NSString *configURLString = [NSString stringWithFormat:@"%@%@%@/config",
-                                     kBaseURL, kConfigWebappPath, appVersion];
-        self.configURL = [NSURL URLWithString:configURLString];
-        self.configJSON = [self getAndParseConfigJSON];
-    }
-    return self;
++ (instancetype)sharedChecker {
+    static ConfigChecker *checker = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        checker = [[self alloc] init];
+        if (checker) {
+            NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+            NSString *appVersion = info[@"CFBundleVersion"];
+            NSString *configURLString = [NSString stringWithFormat:@"%@%@%@/config",
+                                         kBaseURL, kConfigWebappPath, appVersion];
+            checker.configURL = [NSURL URLWithString:configURLString];
+            checker.configJSON = [checker getAndParseConfigJSON];
+        }
+    });
+    return checker;
 }
 
 #pragma mark - Config Checking
@@ -40,12 +44,7 @@
 }
 
 - (void)checkUpgradeRequired {
-    BOOL updateRequired = [(NSNumber *)self.configJSON[@"upgradeRequired"] boolValue];
-    if (updateRequired) {
-        NSLog(@"required");
-    } else {
-        NSLog(@"not required");
-    }
+    self.upgradeRequired = [(NSNumber *)self.configJSON[@"upgradeRequired"] boolValue];
 }
 
 #pragma mark - JSON Handling

@@ -61,8 +61,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [[[ConfigChecker alloc] init] check];
-
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
         // iOS >= 7
         self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;

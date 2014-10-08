@@ -12,6 +12,10 @@
 
 @interface ConfigChecker : NSObject
 
+@property (nonatomic, getter=isUpgradeRequired) BOOL upgradeRequired;
+
++ (instancetype)sharedChecker;
+
 - (void)check;
 
 @end
