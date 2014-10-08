@@ -36,6 +36,7 @@ FOUNDATION_EXPORT NSString *const kRestletPath;
 FOUNDATION_EXPORT NSString *const kLoginService;
 FOUNDATION_EXPORT NSString *const kLogoutService;
 FOUNDATION_EXPORT NSString *const kMainPageURL;
+FOUNDATION_EXPORT NSString *const kConfigWebappPath;
 FOUNDATION_EXPORT NSString *const kLoginSuccessNotification;
 FOUNDATION_EXPORT NSString *const kLoginFailureNotification;
 FOUNDATION_EXPORT NSString *const kRememberMeFailureNotification;
@@ -45,5 +46,6 @@ FOUNDATION_EXPORT NSString *const kUserAgent;
 FOUNDATION_EXPORT NSString *const kUPortalCredentials;
 FOUNDATION_EXPORT NSString *const kLoggingInText;
 FOUNDATION_EXPORT NSString *const kCasLogin;
+FOUNDATION_EXPORT BOOL const kShouldRunConfigCheck;
 
 #endif

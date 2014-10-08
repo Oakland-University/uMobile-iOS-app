@@ -27,6 +27,9 @@ NSString *const kForgotPasswordURL = @"http://forgot.example.edu";
 // Username placeholder text for the Login view
 NSString *const kUsernamePlaceholder = @"Username";
 
+// Whether or not to check against the umobile-global-config webapp
+BOOL const kShouldRunConfigCheck = YES;
+
 // ==================== Fixed Properties ====================
 
 // These shouldn't need to be modified.
@@ -43,6 +46,9 @@ NSString *const kLogoutService = @"/uPortal/Logout";
 
 // Main page URL to be intercepted if necessary
 NSString *const kMainPageURL = @"/uPortal/normal/render.uP";
+
+// umobile-global-config webapp path
+NSString *const kConfigWebappPath = @"/umobile-global-config/iOS/";
 
 // Notification center strings
 NSString *const kLoginSuccessNotification = @"Login Successful";
