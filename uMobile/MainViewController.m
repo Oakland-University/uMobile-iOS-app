@@ -49,8 +49,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     self.mostRecentlySelectedIndexPath = nil;
 
-    Config *config = [Config sharedConfig];
-    if (!config.available || config.upgradeRequired) {
+    if ([Config sharedConfig].unrecoverableError) {
         UIViewController *errorViewController =
         [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
         UINavigationController *navigationController = self.navigationController;
@@ -81,6 +80,11 @@
 
     self.navigationItem.title = kTitle;
 
+    if ([Config sharedConfig].unrecoverableError) {
+        // Abort and show ErrorViewController (called from view
+        return;
+    }
+
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
@@ -101,11 +105,6 @@
                                                                      target:nil
                                                                      action:nil];
     self.loggingInBarButtonItem.enabled = NO;
-
-    Config *config = [Config sharedConfig];
-    if (!config.available || config.upgradeRequired) {
-        return;
-    }
 
     if ([[Authenticator sharedAuthenticator] hasStoredCredentials]) {
         if (!self.splitViewController) {

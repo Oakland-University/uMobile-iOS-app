@@ -70,6 +70,7 @@ NSString *const kLoggingInText = @"Logging In";
 NSString *const kErrorNavigationControllerIdentifier = @"errorNavigationController";
 
 // ==================== Config Messages ====================
+
 NSString *const kConfigUnavailableMessage = @"Unfortunately, an error has occured. "
     "Please check your Internet connection and try again, or visit the website for "
     "more information.";

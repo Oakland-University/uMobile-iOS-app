@@ -29,6 +29,7 @@
             NSString *configURLString = [NSString stringWithFormat:@"%@%@%@/config",
                                          kBaseURL, kConfigWebappPath, appVersion];
             config.available = NO;
+            config.unrecoverableError = NO;
             config.configURL = [NSURL URLWithString:configURLString];
             config.configJSON = [config getAndParseConfigJSON];
         }
@@ -51,11 +52,16 @@
 - (void)checkAvailability {
     if (self.configJSON) {
         self.available = YES;
+    } else {
+        self.unrecoverableError = YES;
     }
 }
 
 - (void)checkUpgradeRequired {
     self.upgradeRequired = [(NSNumber *)self.configJSON[@"upgradeRequired"] boolValue];
+    if (self.upgradeRequired) {
+        self.unrecoverableError = YES;
+    }
 }
 
 #pragma mark - JSON Handling
