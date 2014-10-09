@@ -412,6 +412,75 @@ It looks best with a couple paragraphs worth of text.</string>
             </objects>
             <point key="canvasLocation" x="2419" y="-526"/>
         </scene>
+        <!--Upgrade Required View Controller-->
+        <scene sceneID="pFl-E0-JKr">
+            <objects>
+                <viewController id="GDa-QI-xoy" customClass="UpgradeRequiredViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aj9-nd-ShE"/>
+                        <viewControllerLayoutGuide type="bottom" id="eRx-rF-4qZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NcW-c6-aEi">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z17-pS-Umv">
+                                <rect key="frame" x="311" y="72" width="147" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Go To App Store">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToAppStoreTapped:" destination="GDa-QI-xoy" eventType="touchUpInside" id="pCE-pL-GIn"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXb-Lo-Sc3">
+                                <rect key="frame" x="16" y="108" width="736" height="908"/>
+                                <string key="text">Unfortunately, the current version of this app is out of date and must be updated. Please visit the App Store to download the new version.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="xXb-Lo-Sc3" secondAttribute="trailing" constant="16" id="D0I-Gw-zQx"/>
+                            <constraint firstAttribute="centerX" secondItem="Z17-pS-Umv" secondAttribute="centerX" constant="-0.5" id="G57-9v-pVf"/>
+                            <constraint firstItem="xXb-Lo-Sc3" firstAttribute="leading" secondItem="NcW-c6-aEi" secondAttribute="leading" constant="16" id="W1p-cJ-FAJ"/>
+                            <constraint firstItem="xXb-Lo-Sc3" firstAttribute="top" secondItem="Z17-pS-Umv" secondAttribute="bottom" id="hs8-h2-8Vr"/>
+                            <constraint firstItem="eRx-rF-4qZ" firstAttribute="top" secondItem="xXb-Lo-Sc3" secondAttribute="bottom" constant="8" id="kMu-1C-E56"/>
+                            <constraint firstItem="Z17-pS-Umv" firstAttribute="top" secondItem="Aj9-nd-ShE" secondAttribute="bottom" constant="8" id="rIB-kR-Pet"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dSM-Zy-iAK"/>
+                    <connections>
+                        <outlet property="appStoreButton" destination="Z17-pS-Umv" id="f8g-Tu-e5G"/>
+                        <outlet property="upgradeRequiredTextView" destination="xXb-Lo-Sc3" id="pIq-zX-0ay"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xCm-6J-wqo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="354" y="-2424"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6D8-F5-0vt">
+            <objects>
+                <navigationController storyboardIdentifier="upgradeRequiredNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Hr1-Ow-fTQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z2c-2l-k9o">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GDa-QI-xoy" kind="relationship" relationship="rootViewController" id="Bh1-U1-qsl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YwK-FF-E73" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-702" y="-2424"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Back" width="22" height="22"/>
