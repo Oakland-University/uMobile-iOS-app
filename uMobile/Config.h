@@ -13,6 +13,7 @@
 @interface Config : NSObject
 
 @property (nonatomic, getter=isUpgradeRequired) BOOL upgradeRequired;
+@property (nonatomic, getter=isAvailable) BOOL available;
 
 + (instancetype)sharedConfig;
 

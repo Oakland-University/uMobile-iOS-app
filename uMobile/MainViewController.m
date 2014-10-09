@@ -49,7 +49,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     self.mostRecentlySelectedIndexPath = nil;
 
-    if ([Config sharedConfig].isUpgradeRequired) {
+    Config *config = [Config sharedConfig];
+    if (!config.isAvailable || config.isUpgradeRequired) {
         UIViewController *errorViewController =
         [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
         UINavigationController *navigationController = self.navigationController;
@@ -101,7 +102,8 @@
                                                                      action:nil];
     self.loggingInBarButtonItem.enabled = NO;
 
-    if ([[Config sharedConfig] isUpgradeRequired]) {
+    Config *config = [Config sharedConfig];
+    if ([config isUpgradeRequired]) {
         return;
     }
 

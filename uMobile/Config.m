@@ -28,6 +28,7 @@
             NSString *appVersion = info[@"CFBundleVersion"];
             NSString *configURLString = [NSString stringWithFormat:@"%@%@%@/config",
                                          kBaseURL, kConfigWebappPath, appVersion];
+            config.available = NO;
             config.configURL = [NSURL URLWithString:configURLString];
             config.configJSON = [config getAndParseConfigJSON];
         }
@@ -40,7 +41,17 @@
 - (void)check {
     if (!kShouldRunConfigCheck) { return; }
 
+    [self checkAvailability];
+
+    if (![self isAvailable]) { return; }
+
     [self checkUpgradeRequired];
+}
+
+- (void)checkAvailability {
+    if (self.configJSON) {
+        self.available = YES;
+    }
 }
 
 - (void)checkUpgradeRequired {
