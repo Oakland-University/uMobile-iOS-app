@@ -14,6 +14,7 @@
 #import "NJKWebViewProgress.h"
 #import "Reachability.h"
 #import "KeychainItemWrapper.h"
+#import "Config.h"
 #import "LayoutJSON.h"
 
 @interface PortletViewController ()
@@ -153,6 +154,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if (self.splitViewController && !self.tapOutGestureRecognizer && !self.presentingViewController) {
+
+        // Cancel if Config should show ErrorViewController to avoid making that controller dismissable.
+        Config *config = [Config sharedConfig];
+        if (!config.available || config.upgradeRequired) { return; }
+
         self.tapOutGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                action:@selector(tapOutDetected:)];
         self.tapOutGestureRecognizer.numberOfTapsRequired = 1;
