@@ -1,5 +1,5 @@
 //
-//  UpgradeRequiredViewController.h
+//  ErrorViewController.h
 //  uMobile
 //
 //  Created by Andrew Clissold on 10/8/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UpgradeRequiredViewController : UIViewController
+@interface ErrorViewController : UIViewController
 
 @end

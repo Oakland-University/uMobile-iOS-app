@@ -57,14 +57,14 @@ NSString *const kRememberMeFailureNotification = @"Remember Me Failure";
 NSString *const kLogoutSuccessNotification = @"Logout Successful";
 NSString *const kLogoutFailureNotification = @"Logout Failure";
 
-// The link to your application on the App Store for UpgradeRequiredViewController
+// The link to your application on the App Store for ErrorViewController
 NSString *const kAppStoreURL = @"http://example.edu";
 
 // Other
 NSString *const kUserAgent = @"iPhone";
 NSString *const kUPortalCredentials = @"uPortalCredentials";
 NSString *const kLoggingInText = @"Logging In";
-NSString *const kUpgradeRequiredViewControllerIdentifier = @"upgradeRequiredNavigationController";
+NSString *const kErrorNavigationControllerIdentifier = @"errorNavigationController";
 
 // The URL associated with the JSESSIONID cookie
 NSString *const kCasLogin = @"/cas/login?service=";

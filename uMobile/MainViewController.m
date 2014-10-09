@@ -50,10 +50,10 @@
     self.mostRecentlySelectedIndexPath = nil;
 
     if (![ConfigChecker sharedChecker].isUpgradeRequired) {
-        UIViewController *upgradeRequiredViewController =
-        [self.storyboard instantiateViewControllerWithIdentifier:kUpgradeRequiredViewControllerIdentifier];
+        UIViewController *errorViewController =
+        [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
         UINavigationController *navigationController = self.navigationController;
-        [navigationController presentViewController:upgradeRequiredViewController animated:YES completion:nil];
+        [navigationController presentViewController:errorViewController animated:YES completion:nil];
     }
 }
 

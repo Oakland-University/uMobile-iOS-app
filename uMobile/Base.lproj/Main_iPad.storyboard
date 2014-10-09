@@ -412,10 +412,10 @@ It looks best with a couple paragraphs worth of text.</string>
             </objects>
             <point key="canvasLocation" x="2419" y="-526"/>
         </scene>
-        <!--Upgrade Required View Controller-->
+        <!--Error View Controller-->
         <scene sceneID="pFl-E0-JKr">
             <objects>
-                <viewController id="GDa-QI-xoy" customClass="UpgradeRequiredViewController" sceneMemberID="viewController">
+                <viewController id="GDa-QI-xoy" customClass="ErrorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aj9-nd-ShE"/>
                         <viewControllerLayoutGuide type="bottom" id="eRx-rF-4qZ"/>
@@ -466,7 +466,7 @@ It looks best with a couple paragraphs worth of text.</string>
         <!--Navigation Controller-->
         <scene sceneID="6D8-F5-0vt">
             <objects>
-                <navigationController storyboardIdentifier="upgradeRequiredNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Hr1-Ow-fTQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="errorNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Hr1-Ow-fTQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z2c-2l-k9o">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

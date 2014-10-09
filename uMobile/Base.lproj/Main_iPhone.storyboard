@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-389" y="-1196"/>
         </scene>
-        <!--Upgrade Required View Controller-->
+        <!--Error View Controller-->
         <scene sceneID="uah-fC-wWC">
             <objects>
-                <viewController id="LUO-Z8-5lb" customClass="UpgradeRequiredViewController" sceneMemberID="viewController">
+                <viewController id="LUO-Z8-5lb" customClass="ErrorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LN3-ej-u6k"/>
                         <viewControllerLayoutGuide type="bottom" id="CtP-7o-ZdG"/>
@@ -458,7 +458,7 @@ It looks best with a couple paragraphs worth of text.</string>
         <!--Navigation Controller-->
         <scene sceneID="dSt-MO-YSt">
             <objects>
-                <navigationController storyboardIdentifier="upgradeRequiredNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="5La-vh-so6" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="errorNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="5La-vh-so6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="giY-jl-jiY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

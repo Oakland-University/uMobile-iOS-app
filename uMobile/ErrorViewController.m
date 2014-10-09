@@ -1,21 +1,21 @@
 //
-//  UpgradeRequiredViewController.m
+//  ErrorViewController.m
 //  uMobile
 //
 //  Created by Andrew Clissold on 10/8/14.
 //  Copyright (c) 2014 uMobile. All rights reserved.
 //
 
-#import "UpgradeRequiredViewController.h"
+#import "ErrorViewController.h"
 
-@interface UpgradeRequiredViewController ()
+@interface ErrorViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *appStoreButton;
 @property (weak, nonatomic) IBOutlet UITextView *upgradeRequiredTextView;
 
 @end
 
-@implementation UpgradeRequiredViewController
+@implementation ErrorViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
