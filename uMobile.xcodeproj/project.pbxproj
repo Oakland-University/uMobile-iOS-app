@@ -135,9 +135,12 @@
 			children = (
 				22186D19183D86A5005E42AC /* Main_iPhone.storyboard */,
 				B58AF2131964A2130023731F /* Main_iPad.storyboard */,
+				22186D16183D86A5005E42AC /* AppDelegate.h */,
+				22186D17183D86A5005E42AC /* AppDelegate.m */,
 				75908F3418DC9C15007861B7 /* Model */,
 				75908F3318DC9C02007861B7 /* View */,
 				75908F3518DC9C2A007861B7 /* Controller */,
+				FCC051FE19DB60620031A838 /* Helpers */,
 				22186D0E183D86A5005E42AC /* Supporting Files */,
 				22186D22183D86A5005E42AC /* Images.xcassets */,
 			);
@@ -147,13 +150,10 @@
 		22186D0E183D86A5005E42AC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				22186D16183D86A5005E42AC /* AppDelegate.h */,
-				22186D17183D86A5005E42AC /* AppDelegate.m */,
 				B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */,
 				B5DC2DA918DA0D4C001F0579 /* KeychainItemWrapper */,
 				B59B7E5618C66910007C1FBD /* NJKWebViewProgress */,
-				229EE3F018989533004EAACB /* Reachability.h */,
-				229EE3F118989533004EAACB /* Reachability.m */,
+				FC53FC5119E6CE3900FEBE73 /* Reachability */,
 				22186D0F183D86A5005E42AC /* uMobile-Info.plist */,
 				22186D10183D86A5005E42AC /* InfoPlist.strings */,
 				22186D13183D86A5005E42AC /* main.m */,
@@ -197,7 +197,6 @@
 				B5AAC993191D028400F6DDA7 /* InfoViewController.m */,
 				FC53FC4E19E5DFD400FEBE73 /* ErrorViewController.h */,
 				FC53FC4F19E5DFD400FEBE73 /* ErrorViewController.m */,
-				FCC051FE19DB60620031A838 /* Helpers */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -223,16 +222,25 @@
 			path = KeychainItemWrapper;
 			sourceTree = SOURCE_ROOT;
 		};
+		FC53FC5119E6CE3900FEBE73 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				229EE3F018989533004EAACB /* Reachability.h */,
+				229EE3F118989533004EAACB /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		FCC051FE19DB60620031A838 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				B515F5791964A7D7007B37F8 /* PortletSelectionDelegate.h */,
 				B5E3559019118C8700AD7506 /* Authenticator.h */,
 				B5E3559119118C8700AD7506 /* Authenticator.m */,
 				FCC051FB19DB60530031A838 /* ConfigChecker.h */,
 				FCC051FC19DB60530031A838 /* ConfigChecker.m */,
 				752698E418DC7C33002234FC /* LayoutJSON.h */,
 				752698E518DC7C33002234FC /* LayoutJSON.m */,
+				B515F5791964A7D7007B37F8 /* PortletSelectionDelegate.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
