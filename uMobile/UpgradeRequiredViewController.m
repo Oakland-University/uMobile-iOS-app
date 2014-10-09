@@ -34,7 +34,10 @@
     }
 
     self.title = kTitle;
-    self.upgradeRequiredTextView.textContainerInset = UIEdgeInsetsZero;
+    if ([self.upgradeRequiredTextView respondsToSelector:@selector(setTextContainerInset:)]) {
+        // iOS 7+
+        self.upgradeRequiredTextView.textContainerInset = UIEdgeInsetsZero;
+    }
 }
 
 - (IBAction)goToAppStoreTapped:(UIButton *)sender {
