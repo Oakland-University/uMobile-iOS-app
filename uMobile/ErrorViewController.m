@@ -44,7 +44,7 @@
         NSString *title = [NSString stringWithFormat:@"Open %@ In Safari", kTitle];
         [self.linkButton setTitle:title forState:UIControlStateNormal];
     } else if (config.upgradeRequired) {
-        [self.linkButton setTitle:@"Go To App Store" forState:UIControlStateNormal];
+        [self.linkButton setTitle:kGoToAppStoreTitle forState:UIControlStateNormal];
     }
 }
 

@@ -28,10 +28,15 @@
             NSString *appVersion = info[@"CFBundleVersion"];
             NSString *configURLString = [NSString stringWithFormat:@"%@%@%@/config",
                                          kBaseURL, kConfigWebappPath, appVersion];
-            config.available = NO;
-            config.unrecoverableError = NO;
             config.configURL = [NSURL URLWithString:configURLString];
             config.configJSON = [config getAndParseConfigJSON];
+
+            // Initialize properties to sensible defaults in
+            // case kShouldRunConfigCheck has disabled checking.
+            config.available = YES;
+            config.upgradeRecommended = NO;
+            config.upgradeRequired = NO;
+            config.unrecoverableError = NO;
         }
     });
     return config;
@@ -46,15 +51,19 @@
 
     if (![self isAvailable]) { return; }
 
+    [self checkUpgradeRecommended];
     [self checkUpgradeRequired];
 }
 
 - (void)checkAvailability {
-    if (self.configJSON) {
-        self.available = YES;
-    } else {
+    if (!self.configJSON) {
+        self.available = NO;
         self.unrecoverableError = YES;
     }
+}
+
+- (void)checkUpgradeRecommended {
+    self.upgradeRequired = [(NSNumber *)self.configJSON[@"upgradeRecommended"] boolValue];
 }
 
 - (void)checkUpgradeRequired {

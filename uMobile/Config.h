@@ -12,8 +12,9 @@
 
 @interface Config : NSObject
 
-@property (nonatomic, getter=isUpgradeRequired) BOOL upgradeRequired;
 @property (nonatomic, getter=isAvailable) BOOL available;
+@property (nonatomic, getter=isUpgradeRecommended) BOOL upgradeRecommended;
+@property (nonatomic, getter=isUpgradeRequired) BOOL upgradeRequired;
 
 // To help determine if ErrorViewController should be presented.
 @property (nonatomic, getter=hasUnrecoverableError) BOOL unrecoverableError;

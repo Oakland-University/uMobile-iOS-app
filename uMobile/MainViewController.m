@@ -80,9 +80,12 @@
 
     self.navigationItem.title = kTitle;
 
+    // Check the umobile-global-config webapp.
     if ([Config sharedConfig].unrecoverableError) {
-        // Abort and show ErrorViewController (called from view
+        // Abort and show ErrorViewController (called from viewDidAppear:).
         return;
+    } else if([Config sharedConfig].upgradeRecommended) {
+        [self showUpgradeRecommendedAlert];
     }
 
     self.tableView.delegate = self;
@@ -264,6 +267,24 @@
                 [self configureView];
             }
         }
+    }
+}
+
+- (void)showUpgradeRecommendedAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUpgradeRecommendedMessage
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"Later"
+                                          otherButtonTitles:kGoToAppStoreTitle, nil];
+    alert.delegate = self;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:kGoToAppStoreTitle]) {
+        NSURL *URL = [NSURL URLWithString:kAppStoreURL];
+        [[UIApplication sharedApplication] openURL:URL];
     }
 }
 
