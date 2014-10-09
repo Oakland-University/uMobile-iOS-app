@@ -1,38 +1,38 @@
 //
-//  ConfigChecker.m
+//  Config.m
 //  uMobile
 //
 //  Created by Andrew Clissold on 9/30/14.
 //  Copyright (c) 2014 uMobile. All rights reserved.
 //
 
-#import "ConfigChecker.h"
+#import "Config.h"
 #import "Constants.h"
 
-@interface ConfigChecker ()
+@interface Config ()
 
 @property (nonatomic, strong) NSURL *configURL;
 @property (nonatomic, strong) NSDictionary *configJSON;
 
 @end
 
-@implementation ConfigChecker
+@implementation Config
 
-+ (instancetype)sharedChecker {
-    static ConfigChecker *checker = nil;
++ (instancetype)sharedConfig {
+    static Config *config = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        checker = [[self alloc] init];
-        if (checker) {
+        config = [[self alloc] init];
+        if (config) {
             NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
             NSString *appVersion = info[@"CFBundleVersion"];
             NSString *configURLString = [NSString stringWithFormat:@"%@%@%@/config",
                                          kBaseURL, kConfigWebappPath, appVersion];
-            checker.configURL = [NSURL URLWithString:configURLString];
-            checker.configJSON = [checker getAndParseConfigJSON];
+            config.configURL = [NSURL URLWithString:configURLString];
+            config.configJSON = [config getAndParseConfigJSON];
         }
     });
-    return checker;
+    return config;
 }
 
 #pragma mark - Config Checking
@@ -58,14 +58,14 @@
 
     if (error) {
         // Internet connection offline?
-        NSLog(@"Error getting response: %@", [error localizedDescription]);
+        NSLog(@"Error getting configJSON: %@", [error localizedDescription]);
         return nil;
     }
 
     NSDictionary *configJSON = [NSJSONSerialization JSONObjectWithData:response options:0 error:&error];
 
     if (error) {
-        NSLog(@"JSON parse error: %@", [error localizedDescription]);
+        NSLog(@"configJSON parse error: %@", [error localizedDescription]);
         return nil;
     }
 

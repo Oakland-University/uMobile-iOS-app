@@ -1,5 +1,5 @@
 //
-//  ConfigChecker.h
+//  Config.h
 //  uMobile
 //
 //  Connects to the umobile-global-config webapp to respond to server-side configuration settings.
@@ -10,11 +10,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ConfigChecker : NSObject
+@interface Config : NSObject
 
 @property (nonatomic, getter=isUpgradeRequired) BOOL upgradeRequired;
 
-+ (instancetype)sharedChecker;
++ (instancetype)sharedConfig;
 
 - (void)check;
 

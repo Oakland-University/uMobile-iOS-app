@@ -10,7 +10,7 @@
 #import "PortletViewController.h"
 
 #import "Authenticator.h"
-#import "ConfigChecker.h"
+#import "Config.h"
 #import "LayoutJSON.h"
 
 #import "Reachability.h"
@@ -49,7 +49,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     self.mostRecentlySelectedIndexPath = nil;
 
-    if ([ConfigChecker sharedChecker].isUpgradeRequired) {
+    if ([Config sharedConfig].isUpgradeRequired) {
         UIViewController *errorViewController =
         [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
         UINavigationController *navigationController = self.navigationController;
@@ -101,7 +101,7 @@
                                                                      action:nil];
     self.loggingInBarButtonItem.enabled = NO;
 
-    if ([[ConfigChecker sharedChecker] isUpgradeRequired]) {
+    if ([[Config sharedConfig] isUpgradeRequired]) {
         return;
     }
 

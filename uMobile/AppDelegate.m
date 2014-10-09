@@ -10,7 +10,7 @@
 
 #import "MainViewController.h"
 #import "PortletViewController.h"
-#import "ConfigChecker.h"
+#import "Config.h"
 
 @implementation AppDelegate
 
@@ -25,7 +25,7 @@
         [UINavigationBar appearance].backgroundColor = kSecondaryTintColor;
     }
 
-    [[ConfigChecker sharedChecker] check];
+    [[Config sharedConfig] check];
 
     // Configure split view on iPad
     UIViewController *viewController = self.window.rootViewController;

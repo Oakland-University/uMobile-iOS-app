@@ -33,7 +33,7 @@
 		B5E3559219118C8700AD7506 /* Authenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3559119118C8700AD7506 /* Authenticator.m */; };
 		B5F9795118D8CDEA001B48A1 /* Other Services Portlets.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */; };
 		FC53FC5019E5DFD400FEBE73 /* ErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC53FC4F19E5DFD400FEBE73 /* ErrorViewController.m */; };
-		FCC051FD19DB60530031A838 /* ConfigChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC051FC19DB60530031A838 /* ConfigChecker.m */; };
+		FCC051FD19DB60530031A838 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC051FC19DB60530031A838 /* Config.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,8 +83,8 @@
 		B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Other Services Portlets.plist"; sourceTree = "<group>"; };
 		FC53FC4E19E5DFD400FEBE73 /* ErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorViewController.h; sourceTree = "<group>"; };
 		FC53FC4F19E5DFD400FEBE73 /* ErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorViewController.m; sourceTree = "<group>"; };
-		FCC051FB19DB60530031A838 /* ConfigChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigChecker.h; sourceTree = "<group>"; };
-		FCC051FC19DB60530031A838 /* ConfigChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigChecker.m; sourceTree = "<group>"; };
+		FCC051FB19DB60530031A838 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		FCC051FC19DB60530031A838 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,8 +236,8 @@
 			children = (
 				B5E3559019118C8700AD7506 /* Authenticator.h */,
 				B5E3559119118C8700AD7506 /* Authenticator.m */,
-				FCC051FB19DB60530031A838 /* ConfigChecker.h */,
-				FCC051FC19DB60530031A838 /* ConfigChecker.m */,
+				FCC051FB19DB60530031A838 /* Config.h */,
+				FCC051FC19DB60530031A838 /* Config.m */,
 				752698E418DC7C33002234FC /* LayoutJSON.h */,
 				752698E518DC7C33002234FC /* LayoutJSON.m */,
 				B515F5791964A7D7007B37F8 /* PortletSelectionDelegate.h */,
@@ -328,7 +328,7 @@
 				22186D14183D86A5005E42AC /* main.m in Sources */,
 				22186D41183D8859005E42AC /* TableCell.m in Sources */,
 				B52E8EC9195DEFDC001363D2 /* NSString+URLEncoding.m in Sources */,
-				FCC051FD19DB60530031A838 /* ConfigChecker.m in Sources */,
+				FCC051FD19DB60530031A838 /* Config.m in Sources */,
 				22186D21183D86A5005E42AC /* PortletViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
