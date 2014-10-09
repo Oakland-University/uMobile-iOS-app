@@ -60,11 +60,19 @@ NSString *const kLogoutFailureNotification = @"Logout Failure";
 // The link to your application on the App Store for ErrorViewController
 NSString *const kAppStoreURL = @"http://example.edu";
 
+// The URL associated with the JSESSIONID cookie
+NSString *const kCasLogin = @"/cas/login?service=";
+
 // Other
 NSString *const kUserAgent = @"iPhone";
 NSString *const kUPortalCredentials = @"uPortalCredentials";
 NSString *const kLoggingInText = @"Logging In";
 NSString *const kErrorNavigationControllerIdentifier = @"errorNavigationController";
 
-// The URL associated with the JSESSIONID cookie
-NSString *const kCasLogin = @"/cas/login?service=";
+// ==================== Config Messages ====================
+NSString *const kConfigUnavailableMessage = @"Unfortunately, an error has occured. "
+    "Please check your Internet connection and try again, or visit the website for "
+    "more information.";
+NSString *const kUpgradeRequiredMessage = @"Unfortunately, the current version of "
+    "this app is out of date and must be updated. Please visit the App Store to "
+    "download the new version.";

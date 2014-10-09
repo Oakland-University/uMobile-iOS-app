@@ -49,5 +49,7 @@ FOUNDATION_EXPORT NSString *const kLoggingInText;
 FOUNDATION_EXPORT NSString *const kErrorNavigationControllerIdentifier;
 FOUNDATION_EXPORT NSString *const kCasLogin;
 FOUNDATION_EXPORT BOOL const kShouldRunConfigCheck;
+FOUNDATION_EXPORT NSString *const kConfigUnavailableMessage;
+FOUNDATION_EXPORT NSString *const kUpgradeRequiredMessage;
 
 #endif

@@ -7,10 +7,12 @@
 //
 
 #import "ErrorViewController.h"
+#import "Config.h"
+#import "Constants.h"
 
 @interface ErrorViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *appStoreButton;
+@property (weak, nonatomic) IBOutlet UIButton *linkButton;
 @property (weak, nonatomic) IBOutlet UITextView *upgradeRequiredTextView;
 
 @end
@@ -20,7 +22,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.appStoreButton setTitleColor:kPrimaryTintColor forState:UIControlStateNormal];
+    [self theme];
+    [self configureView];
+}
+
+// Sets up the text view content and button text/link based on Config's state.
+- (void)configureView {
+    Config *config = [Config sharedConfig];
+
+    // Set the text view content.
+    self.upgradeRequiredTextView.selectable = YES; // loses style without doing this
+    if (!config.available) {
+        self.upgradeRequiredTextView.text = kConfigUnavailableMessage;
+    } else if (config.upgradeRequired) {
+        self.upgradeRequiredTextView.text = kUpgradeRequiredMessage;
+    }
+    self.upgradeRequiredTextView.selectable = NO;
+
+    // Set up the button.
+    if (!config.available) {
+        NSString *title = [NSString stringWithFormat:@"Open %@ In Safari", kTitle];
+        [self.linkButton setTitle:title forState:UIControlStateNormal];
+    } else if (config.upgradeRequired) {
+        [self.linkButton setTitle:@"Go To App Store" forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)linkButtonTapped:(UIButton *)sender {
+    Config *config = [Config sharedConfig];
+    if (!config.available) {
+        NSURL *URL = [NSURL URLWithString:kBaseURL];
+        [[UIApplication sharedApplication] openURL:URL];
+    } else if (config.upgradeRequired) {
+        NSURL *URL = [NSURL URLWithString:kAppStoreURL];
+        [[UIApplication sharedApplication] openURL:URL];
+    }
+}
+
+#pragma mark - Theming
+
+- (void)theme {
+    [self.linkButton setTitleColor:kPrimaryTintColor forState:UIControlStateNormal];
     self.view.backgroundColor = kSecondaryTintColor;
 
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
@@ -38,11 +80,6 @@
         // iOS 7+
         self.upgradeRequiredTextView.textContainerInset = UIEdgeInsetsZero;
     }
-}
-
-- (IBAction)goToAppStoreTapped:(UIButton *)sender {
-    NSURL *url = [NSURL URLWithString:kAppStoreURL];
-    [[UIApplication sharedApplication] openURL:url];
 }
 
 @end

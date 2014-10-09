@@ -425,19 +425,18 @@ It looks best with a couple paragraphs worth of text.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z17-pS-Umv">
-                                <rect key="frame" x="311" y="72" width="147" height="36"/>
+                                <rect key="frame" x="334" y="72" width="101" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Go To App Store">
+                                <state key="normal" title="Link Button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="goToAppStoreTapped:" destination="GDa-QI-xoy" eventType="touchUpInside" id="pCE-pL-GIn"/>
+                                    <action selector="linkButtonTapped:" destination="GDa-QI-xoy" eventType="touchUpInside" id="ib8-4U-AHJ"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXb-Lo-Sc3">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="This text is configured in Constants.m and set in ErrorViewController.m. " textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXb-Lo-Sc3">
                                 <rect key="frame" x="16" y="108" width="736" height="908"/>
-                                <string key="text">Unfortunately, the current version of this app is out of date and must be updated. Please visit the App Store to download the new version.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -455,7 +454,7 @@ It looks best with a couple paragraphs worth of text.</string>
                     </view>
                     <navigationItem key="navigationItem" id="dSM-Zy-iAK"/>
                     <connections>
-                        <outlet property="appStoreButton" destination="Z17-pS-Umv" id="f8g-Tu-e5G"/>
+                        <outlet property="linkButton" destination="Z17-pS-Umv" id="Bgw-Ah-TdR"/>
                         <outlet property="upgradeRequiredTextView" destination="xXb-Lo-Sc3" id="pIq-zX-0ay"/>
                     </connections>
                 </viewController>

@@ -50,7 +50,7 @@
     self.mostRecentlySelectedIndexPath = nil;
 
     Config *config = [Config sharedConfig];
-    if (!config.isAvailable || config.isUpgradeRequired) {
+    if (!config.available || config.upgradeRequired) {
         UIViewController *errorViewController =
         [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
         UINavigationController *navigationController = self.navigationController;
@@ -103,7 +103,7 @@
     self.loggingInBarButtonItem.enabled = NO;
 
     Config *config = [Config sharedConfig];
-    if ([config isUpgradeRequired]) {
+    if (!config.available || config.upgradeRequired) {
         return;
     }
 
