@@ -436,7 +436,10 @@ It looks best with a couple paragraphs worth of text.</string>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="This text is configured in Constants.m and set in ErrorViewController.m. " textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXb-Lo-Sc3">
-                                <rect key="frame" x="16" y="108" width="736" height="908"/>
+                                <rect key="frame" x="134" y="108" width="500" height="908"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="ZyB-Nx-1d2"/>
+                                </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -444,12 +447,12 @@ It looks best with a couple paragraphs worth of text.</string>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="xXb-Lo-Sc3" secondAttribute="trailing" constant="16" id="D0I-Gw-zQx"/>
                             <constraint firstAttribute="centerX" secondItem="Z17-pS-Umv" secondAttribute="centerX" constant="-0.5" id="G57-9v-pVf"/>
-                            <constraint firstItem="xXb-Lo-Sc3" firstAttribute="leading" secondItem="NcW-c6-aEi" secondAttribute="leading" constant="16" id="W1p-cJ-FAJ"/>
+                            <constraint firstItem="xXb-Lo-Sc3" firstAttribute="width" secondItem="NcW-c6-aEi" secondAttribute="width" priority="750" id="Hda-oG-K3V"/>
                             <constraint firstItem="xXb-Lo-Sc3" firstAttribute="top" secondItem="Z17-pS-Umv" secondAttribute="bottom" id="hs8-h2-8Vr"/>
                             <constraint firstItem="eRx-rF-4qZ" firstAttribute="top" secondItem="xXb-Lo-Sc3" secondAttribute="bottom" constant="8" id="kMu-1C-E56"/>
                             <constraint firstItem="Z17-pS-Umv" firstAttribute="top" secondItem="Aj9-nd-ShE" secondAttribute="bottom" constant="8" id="rIB-kR-Pet"/>
+                            <constraint firstAttribute="centerX" secondItem="xXb-Lo-Sc3" secondAttribute="centerX" id="rYO-de-ZcS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dSM-Zy-iAK"/>
