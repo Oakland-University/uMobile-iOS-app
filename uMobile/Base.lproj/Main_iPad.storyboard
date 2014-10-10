@@ -454,8 +454,8 @@ It looks best with a couple paragraphs worth of text.</string>
                     </view>
                     <navigationItem key="navigationItem" id="dSM-Zy-iAK"/>
                     <connections>
+                        <outlet property="errorMessageTextView" destination="xXb-Lo-Sc3" id="rOv-PI-rkg"/>
                         <outlet property="linkButton" destination="Z17-pS-Umv" id="Bgw-Ah-TdR"/>
-                        <outlet property="upgradeRequiredTextView" destination="xXb-Lo-Sc3" id="pIq-zX-0ay"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCm-6J-wqo" userLabel="First Responder" sceneMemberID="firstResponder"/>

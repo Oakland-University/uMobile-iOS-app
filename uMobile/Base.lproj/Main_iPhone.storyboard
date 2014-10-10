@@ -67,8 +67,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="ImJ-zm-vfD"/>
                     <connections>
+                        <outlet property="errorMessageTextView" destination="qkZ-D2-fsN" id="2Rn-tt-FML"/>
                         <outlet property="linkButton" destination="aNE-dT-YxU" id="IEw-LE-0ty"/>
-                        <outlet property="upgradeRequiredTextView" destination="qkZ-D2-fsN" id="aaW-PU-yLh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwW-7M-1Lk" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -13,7 +13,7 @@
 @interface ErrorViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *linkButton;
-@property (weak, nonatomic) IBOutlet UITextView *upgradeRequiredTextView;
+@property (weak, nonatomic) IBOutlet UITextView *errorMessageTextView;
 
 @end
 
@@ -42,19 +42,19 @@
 }
 
 - (void)configureTextView {
-    if ([self.upgradeRequiredTextView respondsToSelector:@selector(setSelectable:)]) {
+    if ([self.errorMessageTextView respondsToSelector:@selector(setSelectable:)]) {
         // Temporarily enable selection on iOS 7+ as a workaround for its style disappearing otherwise.
-        self.upgradeRequiredTextView.selectable = YES;
+        self.errorMessageTextView.selectable = YES;
     }
 
     if (![Config sharedConfig].available) {
-        self.upgradeRequiredTextView.text = kConfigUnavailableMessage;
+        self.errorMessageTextView.text = kConfigUnavailableMessage;
     } else if ([Config sharedConfig].upgradeRequired) {
-        self.upgradeRequiredTextView.text = kUpgradeRequiredMessage;
+        self.errorMessageTextView.text = kUpgradeRequiredMessage;
     }
 
-    if ([self.upgradeRequiredTextView respondsToSelector:@selector(setSelectable:)]) {
-        self.upgradeRequiredTextView.selectable = NO;
+    if ([self.errorMessageTextView respondsToSelector:@selector(setSelectable:)]) {
+        self.errorMessageTextView.selectable = NO;
     }
 }
 
@@ -86,9 +86,9 @@
     }
 
     self.title = kTitle;
-    if ([self.upgradeRequiredTextView respondsToSelector:@selector(setTextContainerInset:)]) {
+    if ([self.errorMessageTextView respondsToSelector:@selector(setTextContainerInset:)]) {
         // iOS 7+
-        self.upgradeRequiredTextView.textContainerInset = UIEdgeInsetsZero;
+        self.errorMessageTextView.textContainerInset = UIEdgeInsetsZero;
     }
 }
 
