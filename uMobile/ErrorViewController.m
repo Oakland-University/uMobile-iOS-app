@@ -28,23 +28,33 @@
 
 // Sets up the text view content and button text/link based on Config's state.
 - (void)configureView {
-    Config *config = [Config sharedConfig];
-
     // Set the text view content.
-    self.upgradeRequiredTextView.selectable = YES; // loses style without doing this
-    if (!config.available) {
-        self.upgradeRequiredTextView.text = kConfigUnavailableMessage;
-    } else if (config.upgradeRequired) {
-        self.upgradeRequiredTextView.text = kUpgradeRequiredMessage;
-    }
-    self.upgradeRequiredTextView.selectable = NO;
+    [self configureTextView];
 
     // Set up the button.
+    Config *config = [Config sharedConfig];
     if (!config.available) {
         NSString *title = [NSString stringWithFormat:@"Open %@ In Safari", kTitle];
         [self.linkButton setTitle:title forState:UIControlStateNormal];
     } else if (config.upgradeRequired) {
         [self.linkButton setTitle:kGoToAppStoreTitle forState:UIControlStateNormal];
+    }
+}
+
+- (void)configureTextView {
+    if ([self.upgradeRequiredTextView respondsToSelector:@selector(setSelectable:)]) {
+        // Temporarily enable selection on iOS 7+ as a workaround for its style disappearing otherwise.
+        self.upgradeRequiredTextView.selectable = YES;
+    }
+
+    if (![Config sharedConfig].available) {
+        self.upgradeRequiredTextView.text = kConfigUnavailableMessage;
+    } else if ([Config sharedConfig].upgradeRequired) {
+        self.upgradeRequiredTextView.text = kUpgradeRequiredMessage;
+    }
+
+    if ([self.upgradeRequiredTextView respondsToSelector:@selector(setSelectable:)]) {
+        self.upgradeRequiredTextView.selectable = NO;
     }
 }
 
