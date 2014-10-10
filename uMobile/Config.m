@@ -63,7 +63,7 @@
 }
 
 - (void)checkUpgradeRecommended {
-    self.upgradeRequired = [(NSNumber *)self.configJSON[@"upgradeRecommended"] boolValue];
+    self.upgradeRecommended = [(NSNumber *)self.configJSON[@"upgradeRecommended"] boolValue];
 }
 
 - (void)checkUpgradeRequired {
