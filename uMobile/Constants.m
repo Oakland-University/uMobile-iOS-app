@@ -28,7 +28,7 @@ NSString *const kForgotPasswordURL = @"http://forgot.example.edu";
 NSString *const kUsernamePlaceholder = @"Username";
 
 // Whether or not to check against the umobile-global-config webapp
-BOOL const kShouldRunConfigCheck = YES;
+BOOL const kShouldRunConfigCheck = NO;
 
 // ==================== Fixed Properties ====================
 
