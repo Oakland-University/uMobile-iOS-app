@@ -29,7 +29,6 @@
             NSString *configURLString = [NSString stringWithFormat:@"%@%@%@/config",
                                          kBaseURL, kConfigWebappPath, appVersion];
             config.configURL = [NSURL URLWithString:configURLString];
-            config.configJSON = [config getAndParseConfigJSON];
 
             // Initialize properties to sensible defaults in
             // case kShouldRunConfigCheck has disabled checking.
@@ -45,10 +44,11 @@
 #pragma mark - Config Checking
 
 - (void)check {
-    if (!kShouldRunConfigCheck) { return; }
+    if (!kShouldRunConfigCheck) { return; } // no-op if this hasn't been set to YES in Constants.m
+
+    [self getAndParseConfigJSON];
 
     [self checkAvailability];
-
     if (![self isAvailable]) { return; }
 
     [self checkUpgradeRecommended];
@@ -76,7 +76,7 @@
 #pragma mark - JSON Handling
 
 // Returns configJSON, or nil if an error is encountered.
-- (NSDictionary *)getAndParseConfigJSON {
+- (void)getAndParseConfigJSON {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.configURL];
     [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
     NSError *error;
@@ -85,17 +85,18 @@
     if (error) {
         // Internet connection offline?
         NSLog(@"Error getting configJSON: %@", [error localizedDescription]);
-        return nil;
+        return;
     }
 
     NSDictionary *configJSON = [NSJSONSerialization JSONObjectWithData:response options:0 error:&error];
 
     if (error) {
         NSLog(@"configJSON parse error: %@", [error localizedDescription]);
-        return nil;
+        return;
     }
 
-    return configJSON;
+    // No errors encountered; assign the constructed dictionary.
+    self.configJSON = configJSON;
 }
 
 @end
