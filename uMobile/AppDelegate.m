@@ -58,6 +58,17 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+
+    // Perform the same check that happens on startup.
+    Config *config = [Config sharedConfig];
+    [config check];
+    if (config.unrecoverableError) {
+        UIViewController *errorViewController =
+        [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
+        [self.window.rootViewController presentViewController:errorViewController animated:YES completion:nil];
+    } else if (config.upgradeRecommended) {
+        [config showUpgradeRecommendedAlert];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

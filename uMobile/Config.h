@@ -10,7 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Config : NSObject
+@interface Config : NSObject<UIAlertViewDelegate>
 
 @property (nonatomic, getter=isAvailable) BOOL available;
 @property (nonatomic, getter=isUpgradeRecommended) BOOL upgradeRecommended;
@@ -22,5 +22,6 @@
 + (instancetype)sharedConfig;
 
 - (void)check;
+- (void)showUpgradeRecommendedAlert;
 
 @end

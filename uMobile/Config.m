@@ -56,10 +56,8 @@
 }
 
 - (void)checkAvailability {
-    if (!self.configJSON) {
-        self.available = NO;
-        self.unrecoverableError = YES;
-    }
+    self.available = self.configJSON != nil;
+    self.unrecoverableError = !self.available;
 }
 
 - (void)checkUpgradeRecommended {
@@ -68,10 +66,29 @@
 
 - (void)checkUpgradeRequired {
     self.upgradeRequired = [(NSNumber *)self.configJSON[@"upgradeRequired"] boolValue];
-    if (self.upgradeRequired) {
-        self.unrecoverableError = YES;
+    self.unrecoverableError = self.upgradeRequired;
+}
+
+#pragma mark - Alerts
+
+- (void)showUpgradeRecommendedAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUpgradeRecommendedMessage
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"Later"
+                                          otherButtonTitles:kGoToAppStoreTitle, nil];
+    alert.delegate = self;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:kGoToAppStoreTitle]) {
+        NSURL *URL = [NSURL URLWithString:kAppStoreURL];
+        [[UIApplication sharedApplication] openURL:URL];
     }
 }
+
 
 #pragma mark - JSON Handling
 
