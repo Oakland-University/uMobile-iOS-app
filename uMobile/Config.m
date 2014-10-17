@@ -96,16 +96,17 @@
 - (void)getAndParseConfigJSON {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.configURL];
     [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
+    NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] init];
     NSError *error;
-    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
-    if (error) {
-        // Internet connection offline?
-        NSLog(@"Error getting configJSON: %@", [error localizedDescription]);
+    if (response.statusCode != 200) {
+        NSLog(@"Error getting configJSON (received status code %ld)", response.statusCode);
+        if (error) { NSLog(@"%@", [error localizedDescription]); }
         return;
     }
 
-    NSDictionary *configJSON = [NSJSONSerialization JSONObjectWithData:response options:0 error:&error];
+    NSDictionary *configJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 
     if (error) {
         NSLog(@"configJSON parse error: %@", [error localizedDescription]);
