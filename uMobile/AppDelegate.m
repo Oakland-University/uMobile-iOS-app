@@ -25,8 +25,6 @@
         [UINavigationBar appearance].backgroundColor = kSecondaryTintColor;
     }
 
-    [[Config sharedConfig] check];
-
     // Configure split view on iPad
     UIViewController *viewController = self.window.rootViewController;
     if ([viewController isKindOfClass:UISplitViewController.class]) {
