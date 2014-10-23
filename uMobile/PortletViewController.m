@@ -153,6 +153,13 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    if (self.splitViewController && [Config sharedConfig].unrecoverableError) { // iPad
+        UIViewController *errorViewController =
+        [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
+        UINavigationController *navigationController = self.navigationController;
+        [navigationController presentViewController:errorViewController animated:YES completion:nil];
+    }
+
     if (self.splitViewController && !self.tapOutGestureRecognizer && !self.presentingViewController) {
 
         // Cancel if Config should show ErrorViewController to avoid making that controller dismissable.

@@ -49,7 +49,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     self.mostRecentlySelectedIndexPath = nil;
 
-    if ([Config sharedConfig].unrecoverableError) {
+    if (!self.splitViewController && [Config sharedConfig].unrecoverableError) { // not iPad
         UIViewController *errorViewController =
         [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
         UINavigationController *navigationController = self.navigationController;
