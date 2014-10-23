@@ -36,14 +36,22 @@ FOUNDATION_EXPORT NSString *const kRestletPath;
 FOUNDATION_EXPORT NSString *const kLoginService;
 FOUNDATION_EXPORT NSString *const kLogoutService;
 FOUNDATION_EXPORT NSString *const kMainPageURL;
+FOUNDATION_EXPORT NSString *const kConfigWebappPath;
 FOUNDATION_EXPORT NSString *const kLoginSuccessNotification;
 FOUNDATION_EXPORT NSString *const kLoginFailureNotification;
 FOUNDATION_EXPORT NSString *const kRememberMeFailureNotification;
 FOUNDATION_EXPORT NSString *const kLogoutSuccessNotification;
 FOUNDATION_EXPORT NSString *const kLogoutFailureNotification;
+FOUNDATION_EXPORT NSString *const kAppStoreURL;
 FOUNDATION_EXPORT NSString *const kUserAgent;
 FOUNDATION_EXPORT NSString *const kUPortalCredentials;
 FOUNDATION_EXPORT NSString *const kLoggingInText;
+FOUNDATION_EXPORT NSString *const kGoToAppStoreTitle;
+FOUNDATION_EXPORT NSString *const kErrorNavigationControllerIdentifier;
 FOUNDATION_EXPORT NSString *const kCasLogin;
+FOUNDATION_EXPORT BOOL const kShouldRunConfigCheck;
+FOUNDATION_EXPORT NSString *const kConfigUnavailableMessage;
+FOUNDATION_EXPORT NSString *const kUpgradeRecommendedMessage;
+FOUNDATION_EXPORT NSString *const kUpgradeRequiredMessage;
 
 #endif

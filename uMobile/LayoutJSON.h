@@ -13,7 +13,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JSON : NSObject
+@interface LayoutJSON : NSObject
 + (void)downloadLayoutJSON;
 + (NSDictionary *)getLayoutJSON;
 @end

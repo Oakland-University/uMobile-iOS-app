@@ -14,7 +14,8 @@
 #import "NJKWebViewProgress.h"
 #import "Reachability.h"
 #import "KeychainItemWrapper.h"
-#import "JSON.h"
+#import "Config.h"
+#import "LayoutJSON.h"
 
 @interface PortletViewController ()
 
@@ -152,7 +153,18 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    if (self.splitViewController && [Config sharedConfig].unrecoverableError) { // iPad
+        UIViewController *errorViewController =
+        [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
+        UINavigationController *navigationController = self.navigationController;
+        [navigationController presentViewController:errorViewController animated:YES completion:nil];
+    }
+
     if (self.splitViewController && !self.tapOutGestureRecognizer && !self.presentingViewController) {
+
+        // Cancel if Config should show ErrorViewController to avoid making that controller dismissable.
+        if ([Config sharedConfig].unrecoverableError) { return; }
+
         self.tapOutGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                action:@selector(tapOutDetected:)];
         self.tapOutGestureRecognizer.numberOfTapsRequired = 1;
@@ -456,8 +468,8 @@
         for (NSHTTPCookie *cookie in cookies) {
             if ([cookie.name isEqualToString:@"JSESSIONID"]) {
                 // Check if the user is still logged in by reading layout.json
-                [JSON downloadLayoutJSON];
-                if (![[JSON getLayoutJSON][@"username"] isEqualToString:@"guest"]) {
+                [LayoutJSON downloadLayoutJSON];
+                if (![[LayoutJSON getLayoutJSON][@"username"] isEqualToString:@"guest"]) {
                     validSession = YES;
                     break;
                 }

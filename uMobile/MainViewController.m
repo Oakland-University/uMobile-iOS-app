@@ -7,12 +7,14 @@
 //
 
 #import "MainViewController.h"
+#import "PortletViewController.h"
 
 #import "Authenticator.h"
-#import "HeaderView.h"
-#import "PortletViewController.h"
+#import "Config.h"
+#import "LayoutJSON.h"
+
 #import "Reachability.h"
-#import "JSON.h"
+#import "HeaderView.h"
 
 @interface MainViewController ()
 
@@ -46,6 +48,13 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     self.mostRecentlySelectedIndexPath = nil;
+
+    if (!self.splitViewController && [Config sharedConfig].unrecoverableError) { // not iPad
+        UIViewController *errorViewController =
+        [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
+        UINavigationController *navigationController = self.navigationController;
+        [navigationController presentViewController:errorViewController animated:YES completion:nil];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -59,6 +68,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[Config sharedConfig] check];
+
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
         // iOS >= 7
         self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
@@ -70,6 +81,15 @@
     }
 
     self.navigationItem.title = kTitle;
+
+    // Check the umobile-global-config webapp.
+    Config *config = [Config sharedConfig];
+    if (config.unrecoverableError) {
+        // Abort and show ErrorViewController (called from viewDidAppear:).
+        return;
+    } else if(config.upgradeRecommended) {
+        [config showUpgradeRecommendedAlert];
+    }
 
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -107,8 +127,8 @@
 }
 
 - (void)configureView {
-    [JSON downloadLayoutJSON];
-    NSDictionary *dictJSON = [JSON getLayoutJSON];
+    [LayoutJSON downloadLayoutJSON];
+    NSDictionary *dictJSON = [LayoutJSON getLayoutJSON];
     if (!dictJSON) { return; } // network unreachable
 
     // Build the rows of the table view from the JSON feed
