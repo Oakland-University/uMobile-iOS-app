@@ -50,10 +50,7 @@
     self.mostRecentlySelectedIndexPath = nil;
 
     if (!self.splitViewController && [Config sharedConfig].unrecoverableError) { // not iPad
-        UIViewController *errorViewController =
-        [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
-        UINavigationController *navigationController = self.navigationController;
-        [navigationController presentViewController:errorViewController animated:YES completion:nil];
+        [self presentErrorViewController];
     }
 }
 
@@ -68,18 +65,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [[Config sharedConfig] check];
+    [self theme];
 
-    BOOL shouldContinueConfiguration = [self performInitialSetup];
-    if (shouldContinueConfiguration) {
-        [self logInOrConfigureView];
-    }
+    [[Config sharedConfig] checkWithCompletion:^{
+        BOOL shouldContinueConfiguration = [self performInitialSetup];
+        if (shouldContinueConfiguration) {
+            [self logInOrConfigureView];
+        }
+    }];
 }
 
 #pragma mark - View Configuration
 
 // Only to be called from viewDidLoad. Returns whether or not to continue configuration.
-- (BOOL)performInitialSetup {
+- (void)theme {
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
         // iOS >= 7
         self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
@@ -91,11 +90,25 @@
     }
 
     self.navigationItem.title = kTitle;
+}
 
+- (BOOL)performInitialSetup {
     // Check the umobile-global-config webapp.
     Config *config = [Config sharedConfig];
     if (config.unrecoverableError) {
-        // Abort and show ErrorViewController (called from viewDidAppear:).
+        // Abort and show ErrorViewController.
+        if (!self.splitViewController && [Config sharedConfig].unrecoverableError) { // not iPad
+            [self presentErrorViewController];
+        }
+
+        if (self.splitViewController) { // iPad
+            [self presentErrorViewController];
+        } else { // not iPad
+            UINavigationController *navigationController = self.splitViewController.viewControllers[1];
+            PortletViewController *portletViewController = [navigationController.childViewControllers firstObject];
+            [portletViewController presentErrorViewController];
+        }
+
         return NO;
     } else if(config.upgradeRecommended) {
         [config showUpgradeRecommendedAlert];
@@ -286,6 +299,13 @@
             }
         }
     }
+}
+
+- (void)presentErrorViewController {
+    UIViewController *errorViewController =
+    [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
+    UINavigationController *navigationController = self.navigationController;
+    [navigationController presentViewController:errorViewController animated:YES completion:nil];
 }
 
 - (void)rememberMeFailure {

@@ -161,10 +161,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if (self.splitViewController && [Config sharedConfig].unrecoverableError) { // iPad
-        UIViewController *errorViewController =
-        [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
-        UINavigationController *navigationController = self.navigationController;
-        [navigationController presentViewController:errorViewController animated:YES completion:nil];
+        [self presentErrorViewController];
     }
 
     if (self.splitViewController && !self.tapOutGestureRecognizer && !self.presentingViewController) {
@@ -310,6 +307,13 @@
 }
 
 #pragma mark - Miscellaneous
+
+- (void)presentErrorViewController {
+    UIViewController *errorViewController =
+    [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
+    UINavigationController *navigationController = self.navigationController;
+    [navigationController presentViewController:errorViewController animated:YES completion:nil];
+}
 
 - (void)updateTopOffset {
     // Used to determine whether or not to display the web navigation toolbar.

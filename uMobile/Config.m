@@ -43,16 +43,25 @@
 
 #pragma mark - Config Checking
 
-- (void)check {
-    if (!kShouldRunConfigCheck) { return; } // no-op if this hasn't been set to YES in Constants.m
+- (void)checkWithCompletion:(completion)completion {
+    if (!kShouldRunConfigCheck) {
+        // A no-op if this hasn't been set to YES in Constants.m.
+        completion();
+        return;
+    }
 
-    [self getAndParseConfigJSON];
+    [self getAndParseConfigJSONWithCompletion:^{
+        [self checkAvailability];
+        if (![self isAvailable]) {
+            completion();
+            return;
+        }
 
-    [self checkAvailability];
-    if (![self isAvailable]) { return; }
+        [self checkUpgradeRecommended];
+        [self checkUpgradeRequired];
 
-    [self checkUpgradeRecommended];
-    [self checkUpgradeRequired];
+        completion();
+    }];
 }
 
 - (void)checkAvailability {
@@ -92,29 +101,38 @@
 
 #pragma mark - JSON Handling
 
-// Returns configJSON, or nil if an error is encountered.
-- (void)getAndParseConfigJSON {
+// Sets self.configJSON, or leaves it nil if an error is encountered.
+- (void)getAndParseConfigJSONWithCompletion:(completion)completion {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.configURL];
     [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
-    NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] init];
-    NSError *error;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSInteger statusCode = ((NSHTTPURLResponse *)response).statusCode;
 
-    if (response.statusCode != 200) {
-        NSLog(@"Error getting configJSON (received status code %ld)", (long)response.statusCode);
-        if (error) { NSLog(@"%@", [error localizedDescription]); }
-        return;
-    }
+        if (statusCode != 200) {
+            NSLog(@"Error getting configJSON (received status code %ld)", (long)statusCode);
+            if (connectionError) {
+                NSLog(@"%@", [connectionError localizedDescription]);
+            }
+            completion();
+            return;
+        }
 
-    NSDictionary *configJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        NSError *error;
+        NSDictionary *configJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 
-    if (error) {
-        NSLog(@"configJSON parse error: %@", [error localizedDescription]);
-        return;
-    }
+        if (error) {
+            NSLog(@"configJSON parse error: %@", [error localizedDescription]);
+            completion();
+            return;
+        }
 
-    // No errors encountered; assign the constructed dictionary.
-    self.configJSON = configJSON;
+        // No errors encountered; assign the constructed dictionary.
+        self.configJSON = configJSON;
+
+        completion();
+    }];
 }
 
 @end

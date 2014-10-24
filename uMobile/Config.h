@@ -21,7 +21,8 @@
 
 + (instancetype)sharedConfig;
 
-- (void)check;
+typedef void (^completion)(void); // crash-course on working with blocks: http://goo.gl/jJzNLr
+- (void)checkWithCompletion:(completion)completion;
 - (void)showUpgradeRecommendedAlert;
 
 @end
