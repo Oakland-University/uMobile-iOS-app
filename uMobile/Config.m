@@ -101,7 +101,7 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
     if (response.statusCode != 200) {
-        NSLog(@"Error getting configJSON (received status code %ld)", response.statusCode);
+        NSLog(@"Error getting configJSON (received status code %ld)", (long)response.statusCode);
         if (error) { NSLog(@"%@", [error localizedDescription]); }
         return;
     }
