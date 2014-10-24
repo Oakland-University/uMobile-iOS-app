@@ -70,6 +70,16 @@
 
     [[Config sharedConfig] check];
 
+    BOOL shouldContinueConfiguration = [self performInitialSetup];
+    if (shouldContinueConfiguration) {
+        [self logInOrConfigureView];
+    }
+}
+
+#pragma mark - View Configuration
+
+// Only to be called from viewDidLoad. Returns whether or not to continue configuration.
+- (BOOL)performInitialSetup {
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
         // iOS >= 7
         self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
@@ -86,7 +96,7 @@
     Config *config = [Config sharedConfig];
     if (config.unrecoverableError) {
         // Abort and show ErrorViewController (called from viewDidAppear:).
-        return;
+        return NO;
     } else if(config.upgradeRecommended) {
         [config showUpgradeRecommendedAlert];
     }
@@ -112,6 +122,10 @@
                                                                      action:nil];
     self.loggingInBarButtonItem.enabled = NO;
 
+    return YES;
+}
+
+- (void)logInOrConfigureView {
     if ([[Authenticator sharedAuthenticator] hasStoredCredentials]) {
         if (!self.splitViewController) {
             // Add a loading indication to the navigation bar
@@ -126,6 +140,7 @@
 
 }
 
+// To be called whenever the UI is out of sync such as on startup, changing network conditions, login/logout, etc.
 - (void)configureView {
     [LayoutJSON downloadLayoutJSON];
     NSDictionary *dictJSON = [LayoutJSON getLayoutJSON];
