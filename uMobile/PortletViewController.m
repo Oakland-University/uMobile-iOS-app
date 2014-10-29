@@ -160,6 +160,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    // This check is important because it will catch umobile-global-config unrecoverable errors
+    // (such as upgrade required) if the callback occurs when another view controller is on-screen.
     if (self.splitViewController && [Config sharedConfig].unrecoverableError) { // iPad
         [self presentErrorViewController];
     }
