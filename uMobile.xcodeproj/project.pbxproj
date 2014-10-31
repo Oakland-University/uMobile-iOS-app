@@ -33,6 +33,7 @@
 		B5E3559219118C8700AD7506 /* Authenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3559119118C8700AD7506 /* Authenticator.m */; };
 		B5F9795118D8CDEA001B48A1 /* Other Services Portlets.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */; };
 		FC53FC5019E5DFD400FEBE73 /* ErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC53FC4F19E5DFD400FEBE73 /* ErrorViewController.m */; };
+		FC77CC101A0413E600DE6E98 /* TableActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC77CC0F1A0413E600DE6E98 /* TableActivityIndicatorView.m */; };
 		FCC051FD19DB60530031A838 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC051FC19DB60530031A838 /* Config.m */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,8 @@
 		B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Other Services Portlets.plist"; sourceTree = "<group>"; };
 		FC53FC4E19E5DFD400FEBE73 /* ErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorViewController.h; sourceTree = "<group>"; };
 		FC53FC4F19E5DFD400FEBE73 /* ErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorViewController.m; sourceTree = "<group>"; };
+		FC77CC0E1A0413E600DE6E98 /* TableActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableActivityIndicatorView.h; sourceTree = "<group>"; };
+		FC77CC0F1A0413E600DE6E98 /* TableActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableActivityIndicatorView.m; sourceTree = "<group>"; };
 		FCC051FB19DB60530031A838 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		FCC051FC19DB60530031A838 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +172,8 @@
 				B5B86624191ABB1100C9F460 /* HeaderView.m */,
 				22186D3F183D8859005E42AC /* TableCell.h */,
 				22186D40183D8859005E42AC /* TableCell.m */,
+				FC77CC0E1A0413E600DE6E98 /* TableActivityIndicatorView.h */,
+				FC77CC0F1A0413E600DE6E98 /* TableActivityIndicatorView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 				FC53FC5019E5DFD400FEBE73 /* ErrorViewController.m in Sources */,
 				75D3A09918BE9741008D7239 /* LoginViewController.m in Sources */,
 				22186D18183D86A5005E42AC /* AppDelegate.m in Sources */,
+				FC77CC101A0413E600DE6E98 /* TableActivityIndicatorView.m in Sources */,
 				B5E3559219118C8700AD7506 /* Authenticator.m in Sources */,
 				22186D1E183D86A5005E42AC /* MainViewController.m in Sources */,
 				B59B7E5B18C66910007C1FBD /* NJKWebViewProgress.m in Sources */,

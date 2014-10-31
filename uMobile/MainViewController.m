@@ -9,12 +9,13 @@
 #import "MainViewController.h"
 #import "PortletViewController.h"
 
-#import "Authenticator.h"
 #import "Config.h"
-#import "LayoutJSON.h"
-
-#import "Reachability.h"
 #import "HeaderView.h"
+#import "LayoutJSON.h"
+#import "TableActivityIndicatorView.h"
+
+#import "Authenticator.h"
+#import "Reachability.h"
 
 @interface MainViewController ()
 
@@ -24,7 +25,7 @@
 @property (nonatomic, getter = shouldConfigureViewNextApperance) BOOL configureViewNextAppearance;
 @property (nonatomic, strong) NSIndexPath *mostRecentlySelectedIndexPath;
 
-@property (nonatomic, strong) UIView *activityIndicatorContainerView;
+@property (nonatomic, strong) TableActivityIndicatorView *tableActivityIndicatorView;
 @property (nonatomic, strong) UIBarButtonItem *activityIndicatorBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *loggingInBarButtonItem;
 
@@ -83,18 +84,10 @@
 }
 
 - (void)showInitialLoadActivityIndicator {
-    if (kShouldRunConfigCheck && !self.activityIndicatorContainerView) { // do nothing if the initial load already occured
+    if (kShouldRunConfigCheck && !self.tableActivityIndicatorView) { // do nothing if the initial load already occured
         CGRect frame = self.view.bounds;
-        self.activityIndicatorContainerView = [[UIView alloc] initWithFrame:frame];
-
-        UIActivityIndicatorView *initialLoadActivityIndicator =
-        [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        initialLoadActivityIndicator.center = self.activityIndicatorContainerView.center;
-        initialLoadActivityIndicator.color = kPrimaryTintColor;
-        [initialLoadActivityIndicator startAnimating];
-
-        [self.activityIndicatorContainerView addSubview:initialLoadActivityIndicator];
-        [self.tableView addSubview:self.activityIndicatorContainerView];
+        self.tableActivityIndicatorView = [[TableActivityIndicatorView alloc] initWithFrame:frame color:kPrimaryTintColor];
+        [self.tableView addSubview:self.tableActivityIndicatorView];
     }
 }
 
@@ -103,7 +96,7 @@
     // Re-enable the initially-disabled separator line.
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 
-    self.activityIndicatorContainerView.hidden = true;
+    self.tableActivityIndicatorView.hidden = true;
 }
 
 #pragma mark - View Configuration
