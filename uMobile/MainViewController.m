@@ -24,6 +24,7 @@
 @property (nonatomic, getter = shouldConfigureViewNextApperance) BOOL configureViewNextAppearance;
 @property (nonatomic, strong) NSIndexPath *mostRecentlySelectedIndexPath;
 
+@property (nonatomic, strong) UIView *activityIndicatorContainerView;
 @property (nonatomic, strong) UIBarButtonItem *activityIndicatorBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *loggingInBarButtonItem;
 
@@ -77,10 +78,41 @@
     }];
 }
 
+- (void)viewDidLayoutSubviews {
+    [self showInitialLoadActivityIndicator];
+}
+
+- (void)showInitialLoadActivityIndicator {
+    if (kShouldRunConfigCheck && !self.activityIndicatorContainerView) { // do nothing if the initial load already occured
+        CGRect frame = self.view.bounds;
+        self.activityIndicatorContainerView = [[UIView alloc] initWithFrame:frame];
+
+        UIActivityIndicatorView *initialLoadActivityIndicator =
+        [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        initialLoadActivityIndicator.center = self.activityIndicatorContainerView.center;
+        initialLoadActivityIndicator.color = kPrimaryTintColor;
+        [initialLoadActivityIndicator startAnimating];
+
+        [self.activityIndicatorContainerView addSubview:initialLoadActivityIndicator];
+        [self.tableView addSubview:self.activityIndicatorContainerView];
+    }
+}
+
+// Called from configureView.
+- (void)hideInitialLoadActivityIndicator {
+    // Re-enable the initially-disabled separator line.
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+
+    self.activityIndicatorContainerView.hidden = true;
+}
+
 #pragma mark - View Configuration
 
 // Only to be called from viewDidLoad. Returns whether or not to continue configuration.
 - (void)theme {
+    // Temporarily disable the cell separator lines.
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
         // iOS >= 7
         self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
@@ -94,6 +126,7 @@
     self.navigationItem.title = kTitle;
 }
 
+// Returns whether or not to continue configuration, e.g. if a fatal error occurs.
 - (BOOL)performInitialSetup {
     // Check the umobile-global-config webapp.
     Config *config = [Config sharedConfig];
@@ -204,6 +237,8 @@
 
     [self.sectionContents addObject:otherServicesContents];
     [self.sectionTitles addObject:@"Other Services"];
+
+    [self hideInitialLoadActivityIndicator]; // no-op if already hidden
 
     [self.tableView reloadData];
 
