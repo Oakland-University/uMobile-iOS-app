@@ -59,6 +59,8 @@
 
         [self checkUpgradeRecommended];
         [self checkUpgradeRequired];
+        [self checkDisabledPortlets];
+        [self checkDisabledFolders];
 
         completion();
     }];
@@ -76,6 +78,14 @@
 - (void)checkUpgradeRequired {
     self.upgradeRequired = [(NSNumber *)self.configJSON[@"upgradeRequired"] boolValue];
     self.unrecoverableError = self.upgradeRequired;
+}
+
+- (void)checkDisabledPortlets {
+    self.disabledPortlets = self.configJSON[@"disabledPortlets"];
+}
+
+- (void)checkDisabledFolders {
+    self.disabledFolders = self.configJSON[@"disabledFolders"];
 }
 
 #pragma mark - Alerts

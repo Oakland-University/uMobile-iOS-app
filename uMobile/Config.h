@@ -19,6 +19,9 @@
 // To help determine if ErrorViewController should be presented.
 @property (nonatomic, getter=hasUnrecoverableError) BOOL unrecoverableError;
 
+@property (nonatomic, strong) NSArray *disabledPortlets;
+@property (nonatomic, strong) NSArray *disabledFolders;
+
 + (instancetype)sharedConfig;
 
 typedef void (^completion)(void); // crash-course on working with blocks: http://goo.gl/jJzNLr
