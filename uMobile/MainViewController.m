@@ -9,12 +9,13 @@
 #import "MainViewController.h"
 #import "PortletViewController.h"
 
-#import "Authenticator.h"
 #import "Config.h"
-#import "LayoutJSON.h"
-
-#import "Reachability.h"
 #import "HeaderView.h"
+#import "LayoutJSON.h"
+#import "TableActivityIndicatorView.h"
+
+#import "Authenticator.h"
+#import "Reachability.h"
 
 @interface MainViewController ()
 
@@ -24,6 +25,7 @@
 @property (nonatomic, getter = shouldConfigureViewNextApperance) BOOL configureViewNextAppearance;
 @property (nonatomic, strong) NSIndexPath *mostRecentlySelectedIndexPath;
 
+@property (nonatomic, strong) TableActivityIndicatorView *tableActivityIndicatorView;
 @property (nonatomic, strong) UIBarButtonItem *activityIndicatorBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *loggingInBarButtonItem;
 
@@ -49,11 +51,10 @@
 - (void)viewDidAppear:(BOOL)animated {
     self.mostRecentlySelectedIndexPath = nil;
 
+    // This check is important because it will catch umobile-global-config unrecoverable errors
+    // (such as upgrade required) if the callback occurs when another view controller is on-screen.
     if (!self.splitViewController && [Config sharedConfig].unrecoverableError) { // not iPad
-        UIViewController *errorViewController =
-        [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
-        UINavigationController *navigationController = self.navigationController;
-        [navigationController presentViewController:errorViewController animated:YES completion:nil];
+        [self presentErrorViewController];
     }
 }
 
@@ -68,7 +69,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [[Config sharedConfig] check];
+    [self theme];
+
+    [[Config sharedConfig] checkWithCompletion:^{
+        BOOL shouldContinueConfiguration = [self performInitialSetup];
+        if (shouldContinueConfiguration) {
+            [self logInOrConfigureView];
+        }
+    }];
+}
+
+- (void)viewDidLayoutSubviews {
+    [self showInitialLoadActivityIndicator];
+}
+
+- (void)showInitialLoadActivityIndicator {
+    if (kShouldRunConfigCheck && !self.tableActivityIndicatorView) { // do nothing if the initial load already occured
+        CGRect frame = self.view.bounds;
+        self.tableActivityIndicatorView = [[TableActivityIndicatorView alloc] initWithFrame:frame color:kPrimaryTintColor];
+        [self.tableView addSubview:self.tableActivityIndicatorView];
+    }
+}
+
+// Called from configureView.
+- (void)hideInitialLoadActivityIndicator {
+    // Re-enable the initially-disabled separator line.
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+
+    self.tableActivityIndicatorView.hidden = true;
+}
+
+#pragma mark - View Configuration
+
+// Only to be called from viewDidLoad. Returns whether or not to continue configuration.
+- (void)theme {
+    // Temporarily disable the cell separator lines.
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
         // iOS >= 7
@@ -81,12 +117,27 @@
     }
 
     self.navigationItem.title = kTitle;
+}
 
+// Returns whether or not to continue configuration, e.g. if a fatal error occurs.
+- (BOOL)performInitialSetup {
     // Check the umobile-global-config webapp.
     Config *config = [Config sharedConfig];
     if (config.unrecoverableError) {
-        // Abort and show ErrorViewController (called from viewDidAppear:).
-        return;
+        // Abort and show ErrorViewController.
+        if (!self.splitViewController && [Config sharedConfig].unrecoverableError) { // not iPad
+            [self presentErrorViewController];
+        }
+
+        if (self.splitViewController) { // iPad
+            [self presentErrorViewController];
+        } else { // not iPad
+            UINavigationController *navigationController = self.splitViewController.viewControllers[1];
+            PortletViewController *portletViewController = [navigationController.childViewControllers firstObject];
+            [portletViewController presentErrorViewController];
+        }
+
+        return NO;
     } else if(config.upgradeRecommended) {
         [config showUpgradeRecommendedAlert];
     }
@@ -112,6 +163,10 @@
                                                                      action:nil];
     self.loggingInBarButtonItem.enabled = NO;
 
+    return YES;
+}
+
+- (void)logInOrConfigureView {
     if ([[Authenticator sharedAuthenticator] hasStoredCredentials]) {
         if (!self.splitViewController) {
             // Add a loading indication to the navigation bar
@@ -126,6 +181,7 @@
 
 }
 
+// To be called whenever the UI is out of sync such as on startup, changing network conditions, login/logout, etc.
 - (void)configureView {
     [LayoutJSON downloadLayoutJSON];
     NSDictionary *dictJSON = [LayoutJSON getLayoutJSON];
@@ -174,6 +230,8 @@
 
     [self.sectionContents addObject:otherServicesContents];
     [self.sectionTitles addObject:@"Other Services"];
+
+    [self hideInitialLoadActivityIndicator]; // no-op if already hidden
 
     [self.tableView reloadData];
 
@@ -271,6 +329,13 @@
             }
         }
     }
+}
+
+- (void)presentErrorViewController {
+    UIViewController *errorViewController =
+    [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
+    UINavigationController *navigationController = self.navigationController;
+    [navigationController presentViewController:errorViewController animated:YES completion:nil];
 }
 
 - (void)rememberMeFailure {

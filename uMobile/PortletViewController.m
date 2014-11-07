@@ -75,29 +75,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-        // Set up the UIBarButtonItems
-        UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-        activityIndicatorView.color = kPrimaryTintColor;
-        [activityIndicatorView startAnimating];
+    [self performInitialSetup];
+    [self logInOrConfigureView];
+}
 
-        self.activityIndicatorBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView];
+- (void)performInitialSetup {
+    // Set up the UIBarButtonItems
+    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    activityIndicatorView.color = kPrimaryTintColor;
+    [activityIndicatorView startAnimating];
 
-        self.loggingInBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLoggingInText
-                                                                       style:UIBarButtonItemStylePlain
-                                                                      target:nil
-                                                                      action:nil];
-        self.loggingInBarButtonItem.enabled = NO;
+    self.activityIndicatorBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView];
 
-    if (self.splitViewController && [[Authenticator sharedAuthenticator] hasStoredCredentials]) {
-        // Add a loading indication to the navigation bar
-        NSArray *loggingInItems = @[self.loggingInBarButtonItem, self.activityIndicatorBarButtonItem];
-        self.navigationItem.rightBarButtonItems = loggingInItems;
-        [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
-        // implicitly call configureView after a login success notification
-    } else {
-        [self configureView];
-    }
+    self.loggingInBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLoggingInText
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:nil
+                                                                  action:nil];
+    self.loggingInBarButtonItem.enabled = NO;
 
     [self configureSplitViewAppearance];
     [self updateTopOffset];
@@ -139,6 +134,18 @@
     self.keychain = [[KeychainItemWrapper alloc] initWithIdentifier:kUPortalCredentials accessGroup:nil];
 }
 
+-(void)logInOrConfigureView {
+    if (self.splitViewController && [[Authenticator sharedAuthenticator] hasStoredCredentials]) {
+        // Add a loading indication to the navigation bar
+        NSArray *loggingInItems = @[self.loggingInBarButtonItem, self.activityIndicatorBarButtonItem];
+        self.navigationItem.rightBarButtonItems = loggingInItems;
+        [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
+        // implicitly call configureView after a login success notification
+    } else {
+        [self configureView];
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     if (!self.splitViewController) {
         if ([self.networkReachability currentReachabilityStatus] == NotReachable) {
@@ -153,11 +160,10 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    // This check is important because it will catch umobile-global-config unrecoverable errors
+    // (such as upgrade required) if the callback occurs when another view controller is on-screen.
     if (self.splitViewController && [Config sharedConfig].unrecoverableError) { // iPad
-        UIViewController *errorViewController =
-        [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
-        UINavigationController *navigationController = self.navigationController;
-        [navigationController presentViewController:errorViewController animated:YES completion:nil];
+        [self presentErrorViewController];
     }
 
     if (self.splitViewController && !self.tapOutGestureRecognizer && !self.presentingViewController) {
@@ -235,6 +241,21 @@
     [self.splitViewController.view addSubview:self.coverView];
 }
 
+- (void)configureNavigationToolbar {
+    // Show the navigation toolbar only when outside of the uPortal domain.
+    if ([[self.webView.request.URL absoluteString] rangeOfString:kBaseURL].location == NSNotFound) {
+        self.inDomain = NO;
+        self.navigationToolbar.alpha = 1;
+    } else {
+        self.inDomain = YES;
+        self.navigationToolbar.alpha = 0;
+    }
+
+    self.backButton.enabled = [self.webView canGoBack];
+    self.forwardButton.enabled = [self.webView canGoForward];
+    self.stopButton.enabled = [self.webView isLoading];
+}
+
 - (void)configureLogInButton {
     self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithTitle:@"Log In"
                                                                                  style:UIBarButtonItemStylePlain
@@ -289,6 +310,13 @@
 
 #pragma mark - Miscellaneous
 
+- (void)presentErrorViewController {
+    UIViewController *errorViewController =
+    [self.storyboard instantiateViewControllerWithIdentifier:kErrorNavigationControllerIdentifier];
+    UINavigationController *navigationController = self.navigationController;
+    [navigationController presentViewController:errorViewController animated:YES completion:nil];
+}
+
 - (void)updateTopOffset {
     // Used to determine whether or not to display the web navigation toolbar.
     if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
@@ -328,21 +356,6 @@
             }
         }
     }
-}
-
-- (void)configureNavigationToolbar {
-    // Show the navigation toolbar only when outside of the uPortal domain.
-    if ([[self.webView.request.URL absoluteString] rangeOfString:kBaseURL].location == NSNotFound) {
-        self.inDomain = NO;
-        self.navigationToolbar.alpha = 1;
-    } else {
-        self.inDomain = YES;
-        self.navigationToolbar.alpha = 0;
-    }
-
-    self.backButton.enabled = [self.webView canGoBack];
-    self.forwardButton.enabled = [self.webView canGoForward];
-    self.stopButton.enabled = [self.webView isLoading];
 }
 
 // Called when a login success notification occurs.

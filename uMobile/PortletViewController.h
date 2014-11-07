@@ -36,4 +36,6 @@
 - (void)configureLogInButton;
 - (void)configureLogOutButton;
 
+- (void)presentErrorViewController;
+
 @end
