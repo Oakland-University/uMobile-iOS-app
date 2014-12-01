@@ -209,16 +209,24 @@
         }
     }
 
+    Config *config = [Config sharedConfig];
+
     for (NSDictionary *folder in folders) {
+        if (config.disabledFolders && [config.disabledFolders containsObject:folder[@"title"]]) {
+            continue;
+        }
         NSMutableArray *cellContents = [NSMutableArray new];
         NSArray *portlets = folder[@"portlets"];
         for (NSDictionary *portlet in portlets) {
-            NSString *thumbnailName = [NSString stringWithFormat:@"%@", portlet[@"fname"]];
+            NSString *fname = portlet[@"fname"];
+            if (config.disabledPortlets && [config.disabledPortlets containsObject:fname]) {
+                continue;
+            }
             NSString *title = portlet[@"title"];
             NSString *description = portlet[@"description"];
             NSString *url = [NSString stringWithFormat:@"%@%@", kBaseURL, portlet[@"url"]];
 
-            NSDictionary *cellContent = @{@"thumbnail": thumbnailName, @"title": title, @"description": description, @"url": url};
+            NSDictionary *cellContent = @{@"thumbnail": fname, @"title": title, @"description": description, @"url": url};
             [cellContents addObject:cellContent];
         }
         [self.sectionContents addObject:cellContents];
