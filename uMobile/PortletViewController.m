@@ -122,10 +122,7 @@
         self.progressProxy.progressBlock = ^(float progress) {
             [weakSelf.progressView setProgress:progress animated:YES];
             if (progress >= 0.9f) {
-                NSThread *thread = [[NSThread alloc] initWithTarget:weakSelf
-                                                           selector:@selector(pauseAndHideProgressView)
-                                                             object:nil];
-                [thread start];
+                [weakSelf pauseAndHideProgressView];
             }
         };
     }
@@ -331,10 +328,13 @@
 
 
 - (void)pauseAndHideProgressView {
-    [NSThread sleepForTimeInterval:0.4];
-    [UIView animateWithDuration:0.5 animations:^{
-        self.progressView.alpha = 0.0;
-    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 400 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.5 animations:^{
+            self.progressView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            self.progressView.progress = 0;
+        }];
+    });
 }
 
 - (void)zoomWebView {
