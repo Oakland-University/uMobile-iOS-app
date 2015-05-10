@@ -17,14 +17,6 @@
 #define kSecondaryTintColor [UIColor colorWithRed:98/255.0f green:136/255.0f blue:196/255.0f alpha:1.0]
 #define kTextTintColor [UIColor whiteColor]
 
-// ==================== Convenience Macros ====================
-
-#define SYSTEM_VERSION_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
-#define SYSTEM_VERSION_GREATER_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
-
 // See Constants.m for these
 FOUNDATION_EXPORT NSString *const kTitle;
 FOUNDATION_EXPORT NSString *const kBaseURL;
