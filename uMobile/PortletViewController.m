@@ -114,18 +114,16 @@
                                             selector:@selector(rememberMeFailure)
                                                 name:kRememberMeFailureNotification object:nil];
 
-    // Set up progress bar if iOS 7 or above
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [self.progressView setHidden:NO];
-        __weak PortletViewController *weakSelf = self;
-        [self.view bringSubviewToFront:self.progressView];
-        self.progressProxy.progressBlock = ^(float progress) {
-            [weakSelf.progressView setProgress:progress animated:YES];
-            if (progress >= 0.9f) {
-                [weakSelf pauseAndHideProgressView];
-            }
-        };
-    }
+    // Set up progress bar
+    [self.progressView setHidden:NO];
+    __weak PortletViewController *weakSelf = self;
+    [self.view bringSubviewToFront:self.progressView];
+    self.progressProxy.progressBlock = ^(float progress) {
+        [weakSelf.progressView setProgress:progress animated:YES];
+        if (progress >= 0.9f) {
+            [weakSelf pauseAndHideProgressView];
+        }
+    };
 
     self.networkReachability = [Reachability reachabilityForInternetConnection];
     self.keychain = [[KeychainItemWrapper alloc] initWithIdentifier:kUPortalCredentials accessGroup:nil];
@@ -201,12 +199,6 @@
         NSString *urlString = (self.portletInfo)[@"url"];
         NSURL *url = [NSURL URLWithString:urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-            self.progressView.frame = CGRectMake(self.progressView.frame.origin.x,
-                                                 0,
-                                                 self.progressView.frame.size.width,
-                                                 self.progressView.frame.size.height);
-        }
         self.progressView.progress = 0.0;
         [self.webView loadRequest:request];
     }
@@ -214,23 +206,11 @@
 
 - (void)configureSplitViewAppearance {
     // Set the bar tint on iPad since this view controller has its own UINavigationController
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
-        // iOS >= 7
-        self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
-        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
-    } else {
-        // iOS < 7
-        self.navigationController.navigationBar.tintColor = kSecondaryTintColor;
-        [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: kTextTintColor}];
-    }
+    self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
 
     // Place a solid-color view over the UISplitViewController divider line to "hide" it.
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-        self.coverView = [[UIView alloc] initWithFrame:CGRectMake(320, 0, 1, 44)];
-    } else {
-        // iOS 7+ displays the navigation bar behind the 20pt status bar
-        self.coverView = [[UIView alloc] initWithFrame:CGRectMake(320, 0, 1, 64)];
-    }
+    self.coverView = [[UIView alloc] initWithFrame:CGRectMake(320, 0, 1, 64)];
     self.coverView.backgroundColor = kSecondaryTintColor;
     if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         self.coverView.hidden = YES;
@@ -276,24 +256,6 @@
         } else {
             self.coverView.hidden = NO;
         }
-
-        if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-            [self updateScrollViewZoomScalesForInterfaceOrientation:toInterfaceOrientation];
-        }
-    }
-}
-
-- (void)updateScrollViewZoomScalesForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    CGFloat aspectRatio = CGRectGetWidth(self.webView.bounds) / CGRectGetHeight(self.webView.bounds);
-    UIScrollView *scrollView = self.webView.scrollView;
-    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-        scrollView.minimumZoomScale = scrollView.minimumZoomScale / aspectRatio;
-        scrollView.maximumZoomScale = scrollView.maximumZoomScale / aspectRatio;
-        [scrollView setZoomScale:(scrollView.zoomScale / aspectRatio) animated:YES];
-    } else {
-        scrollView.minimumZoomScale = scrollView.minimumZoomScale * aspectRatio;
-        scrollView.maximumZoomScale = scrollView.maximumZoomScale * aspectRatio;
-        [scrollView setZoomScale:(scrollView.zoomScale * aspectRatio) animated:YES];
     }
 }
 
@@ -316,14 +278,10 @@
 
 - (void)updateTopOffset {
     // Used to determine whether or not to display the web navigation toolbar.
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-        self.topOffset = 0;
-    } else {
-        CGFloat navigationAndStatusBarHeight = (CGRectGetHeight(self.navigationController.navigationBar.frame) +
-                                                MIN(CGRectGetHeight([UIApplication sharedApplication].statusBarFrame),
-                                                    CGRectGetWidth([UIApplication sharedApplication].statusBarFrame)));
-        self.topOffset = -navigationAndStatusBarHeight;
-    }
+    CGFloat navigationAndStatusBarHeight = (CGRectGetHeight(self.navigationController.navigationBar.frame) +
+                                            MIN(CGRectGetHeight([UIApplication sharedApplication].statusBarFrame),
+                                                CGRectGetWidth([UIApplication sharedApplication].statusBarFrame)));
+    self.topOffset = -navigationAndStatusBarHeight;
 }
 
 
@@ -388,11 +346,7 @@
      willHideViewController:(UIViewController *)aViewController
           withBarButtonItem:(UIBarButtonItem *)barButtonItem
        forPopoverController:(UIPopoverController *)pc {
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-        barButtonItem.title = kTitle;
-    } else {
-        barButtonItem.title = [NSString stringWithFormat:@"❮ %@", kTitle];
-    }
+    barButtonItem.title = [NSString stringWithFormat:@"❮ %@", kTitle];
     self.navigationItem.leftBarButtonItem = barButtonItem;
     self.pc = pc;
 }
