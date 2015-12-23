@@ -447,7 +447,7 @@
 					"${SDK_DIR}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "uMobile/uMobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.umobile;
 				PRODUCT_NAME = uMobile;
 				PROVISIONING_PROFILE = "";
@@ -472,7 +472,7 @@
 					"${SDK_DIR}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "uMobile/uMobile-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.umobile;
 				PRODUCT_NAME = uMobile;
 				PROVISIONING_PROFILE = "";
