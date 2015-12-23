@@ -276,7 +276,7 @@
 		22186CFC183D86A5005E42AC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = uMobile;
 			};
 			buildConfigurationList = 22186CFF183D86A5005E42AC /* Build configuration list for PBXProject "uMobile" */;
@@ -379,6 +379,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -447,6 +448,7 @@
 				);
 				INFOPLIST_FILE = "uMobile/uMobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.umobile;
 				PRODUCT_NAME = uMobile;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -471,6 +473,7 @@
 				);
 				INFOPLIST_FILE = "uMobile/uMobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.umobile;
 				PRODUCT_NAME = uMobile;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
