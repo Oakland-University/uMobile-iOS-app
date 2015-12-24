@@ -29,15 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
-        // iOS >= 7
-        self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
-        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
-    } else {
-        // iOS < 7
-        self.navigationController.navigationBar.tintColor = kSecondaryTintColor;
-        [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: kTextTintColor}];
-    }
+    self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
     self.navigationItem.title = @"Log In";
 
     // Theming

@@ -42,10 +42,8 @@
 }
 
 - (void)configureTextView {
-    if ([self.errorMessageTextView respondsToSelector:@selector(setSelectable:)]) {
-        // Temporarily enable selection on iOS 7+ as a workaround for its style disappearing otherwise.
-        self.errorMessageTextView.selectable = YES;
-    }
+    // Temporarily enable selection as a workaround for its style disappearing otherwise.
+    self.errorMessageTextView.selectable = YES;
 
     if (![Config sharedConfig].available) {
         self.errorMessageTextView.text = kConfigUnavailableMessage;
@@ -53,9 +51,7 @@
         self.errorMessageTextView.text = kUpgradeRequiredMessage;
     }
 
-    if ([self.errorMessageTextView respondsToSelector:@selector(setSelectable:)]) {
-        self.errorMessageTextView.selectable = NO;
-    }
+    self.errorMessageTextView.selectable = NO;
 }
 
 - (IBAction)linkButtonTapped:(UIButton *)sender {
@@ -75,21 +71,11 @@
     [self.linkButton setTitleColor:kPrimaryTintColor forState:UIControlStateNormal];
     self.view.backgroundColor = kSecondaryTintColor;
 
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
-        // iOS >= 7
-        self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
-        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
-    } else {
-        // iOS < 7
-        self.navigationController.navigationBar.tintColor = kSecondaryTintColor;
-        [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: kTextTintColor}];
-    }
+    self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
 
     self.title = kTitle;
-    if ([self.errorMessageTextView respondsToSelector:@selector(setTextContainerInset:)]) {
-        // iOS 7+
-        self.errorMessageTextView.textContainerInset = UIEdgeInsetsZero;
-    }
+    self.errorMessageTextView.textContainerInset = UIEdgeInsetsZero;
 }
 
 @end

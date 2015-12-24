@@ -16,13 +16,13 @@
 NSString *const kTitle = @"uMobile";
 
 // Main uPortal URL
-NSString *const kBaseURL = @"http://mockuportal.appspot.com";
+NSString *const kBaseURL = @"https://mockuportal.appspot.com";
 
 // Main CAS URL
-NSString *const kCasServer = @"http://login.example.edu";
+NSString *const kCasServer = @"https://login.example.edu";
 
 // Forgot password URL to open in Safari
-NSString *const kForgotPasswordURL = @"http://forgot.example.edu";
+NSString *const kForgotPasswordURL = @"https://forgot.example.edu";
 
 // Username placeholder text for the Login view
 NSString *const kUsernamePlaceholder = @"Username";
@@ -58,7 +58,7 @@ NSString *const kLogoutSuccessNotification = @"Logout Successful";
 NSString *const kLogoutFailureNotification = @"Logout Failure";
 
 // The link to your application on the App Store for ErrorViewController
-NSString *const kAppStoreURL = @"http://example.edu";
+NSString *const kAppStoreURL = @"https://example.edu";
 
 // The URL associated with the JSESSIONID cookie
 NSString *const kCasLogin = @"/cas/login?service=";

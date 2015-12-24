@@ -17,13 +17,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Set the global tint color
-    if ([self.window respondsToSelector:@selector(setTintColor:)]) {
-        self.window.tintColor = kPrimaryTintColor;
-        [UINavigationBar appearance].barTintColor = kSecondaryTintColor;
-    } else {
-        self.window.backgroundColor = kPrimaryTintColor;
-        [UINavigationBar appearance].backgroundColor = kSecondaryTintColor;
-    }
+    self.window.tintColor = kPrimaryTintColor;
+    [UINavigationBar appearance].barTintColor = kSecondaryTintColor;
 
     // Configure split view on iPad
     UIViewController *viewController = self.window.rootViewController;

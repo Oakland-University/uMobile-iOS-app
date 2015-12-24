@@ -2,27 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-    <dict>
-        <key>thumbnail</key>
-        <string>Default</string> <!-- The image named "Default" in Images.xcassets -->
-        <key>title</key>
-        <string>Example XML Portlet</string>
-        <key>description</key>
-        <string>A portlet configured in "Other Services Portlets.plist"</string>
-        <key>url</key>
-        <string>http://www.apereo.org/umobile</string>
-    </dict>
-    <dict>
-        <key>thumbnail</key>
-        <string>Default</string> <!-- The image named "Default" in Images.xcassets -->
-        <key>title</key>
-        <string>Contact Administrator</string>
-        <key>description</key>
-        <string>Tap here to contact an administrator</string>
-        <key>url</key>
-        <string>mailto:admin@example.edu</string>
-    </dict>
-    <!-- To add more "Other Services" portlets, just create another <dict> element similar
-        to the examples above. -->
+	<dict>
+		<key>thumbnail</key>
+		<string>Default</string>
+		<key>title</key>
+		<string>Example XML Portlet</string>
+		<key>description</key>
+		<string>A portlet configured in &quot;Other Services Portlets.plist&quot;</string>
+		<key>url</key>
+		<string>https://www.apereo.org/umobile</string>
+	</dict>
+	<dict>
+		<key>thumbnail</key>
+		<string>Default</string>
+		<key>title</key>
+		<string>Contact Administrator</string>
+		<key>description</key>
+		<string>Tap here to contact an administrator</string>
+		<key>url</key>
+		<string>mailto:admin@example.edu</string>
+	</dict>
 </array>
 </plist>
