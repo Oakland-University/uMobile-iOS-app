@@ -3,9 +3,9 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
+      "filename" : "Default@2x.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "Default@2x.png",
       "scale" : "2x"
     },
     {
@@ -20,54 +20,54 @@
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
-      "extent" : "full-screen",
-      "minimum-system-version" : "7.0",
       "filename" : "Default~ipad.png",
+      "extent" : "full-screen",
+      "minimum-system-version" : "7.0",
       "scale" : "1x"
     },
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
-      "extent" : "full-screen",
-      "minimum-system-version" : "7.0",
       "filename" : "Default-Landscape~ipad.png",
+      "extent" : "full-screen",
+      "minimum-system-version" : "7.0",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
+      "filename" : "Default@2x~ipad.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "Default@2x~ipad.png",
       "scale" : "2x"
     },
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
+      "filename" : "Default-Landscape@2x~ipad.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "Default-Landscape@2x~ipad.png",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "extent" : "full-screen",
       "filename" : "Default-ios6.png",
+      "extent" : "full-screen",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "extent" : "full-screen",
       "filename" : "Default@2x-ios6.png",
+      "extent" : "full-screen",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "extent" : "full-screen",
       "filename" : "Default@2x~R4-ios6.png",
+      "extent" : "full-screen",
       "subtype" : "retina4",
       "scale" : "2x"
     },
@@ -80,8 +80,8 @@
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
-      "extent" : "full-screen",
       "filename" : "Default~ipad-ios6.png",
+      "extent" : "full-screen",
       "scale" : "1x"
     },
     {
@@ -93,8 +93,8 @@
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
-      "extent" : "full-screen",
       "filename" : "Default-Landscape~ipad-ios6.png",
+      "extent" : "full-screen",
       "scale" : "1x"
     },
     {
@@ -106,8 +106,8 @@
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
-      "extent" : "full-screen",
       "filename" : "Default@2x~ipad-ios6.png",
+      "extent" : "full-screen",
       "scale" : "2x"
     },
     {
@@ -119,8 +119,8 @@
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
-      "extent" : "full-screen",
       "filename" : "Default-Landscape@2x~ipad-ios6.png",
+      "extent" : "full-screen",
       "scale" : "2x"
     }
   ],
