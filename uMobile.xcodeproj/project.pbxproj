@@ -16,13 +16,14 @@
 		22186D1B183D86A5005E42AC /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22186D19183D86A5005E42AC /* Main_iPhone.storyboard */; };
 		22186D1E183D86A5005E42AC /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D1D183D86A5005E42AC /* MainViewController.m */; };
 		22186D21183D86A5005E42AC /* PortletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D20183D86A5005E42AC /* PortletViewController.m */; };
-		22186D23183D86A5005E42AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22186D22183D86A5005E42AC /* Images.xcassets */; };
+		22186D23183D86A5005E42AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22186D22183D86A5005E42AC /* Assets.xcassets */; };
 		22186D41183D8859005E42AC /* TableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D40183D8859005E42AC /* TableCell.m */; };
 		229EE3F218989533004EAACB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 229EE3F118989533004EAACB /* Reachability.m */; };
 		752698E618DC7C33002234FC /* LayoutJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 752698E518DC7C33002234FC /* LayoutJSON.m */; };
 		75D3A09918BE9741008D7239 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D3A09818BE9741008D7239 /* LoginViewController.m */; };
 		75E5AF1F18C52B4400CF6EBE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E5AF1E18C52B4400CF6EBE /* libxml2.dylib */; };
 		B52E8EC9195DEFDC001363D2 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = B52E8EC8195DEFDC001363D2 /* NSString+URLEncoding.m */; };
+		B560C0281C2E5A070036635A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B560C0271C2E5A070036635A /* Launch Screen.storyboard */; };
 		B58AF2141964A2130023731F /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58AF2131964A2130023731F /* Main_iPad.storyboard */; };
 		B59B7E5B18C66910007C1FBD /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B7E5818C66910007C1FBD /* NJKWebViewProgress.m */; };
 		B59B7E5C18C66910007C1FBD /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B7E5A18C66910007C1FBD /* NJKWebViewProgressView.m */; };
@@ -53,7 +54,7 @@
 		22186D1D183D86A5005E42AC /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MainViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		22186D1F183D86A5005E42AC /* PortletViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PortletViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		22186D20183D86A5005E42AC /* PortletViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PortletViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		22186D22183D86A5005E42AC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		22186D22183D86A5005E42AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22186D3F183D8859005E42AC /* TableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		22186D40183D8859005E42AC /* TableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		229EE3F018989533004EAACB /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -66,6 +67,7 @@
 		B515F5791964A7D7007B37F8 /* PortletSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortletSelectionDelegate.h; sourceTree = "<group>"; };
 		B52E8EC7195DEFDC001363D2 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		B52E8EC8195DEFDC001363D2 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		B560C0271C2E5A070036635A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B58AF2131964A2130023731F /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main_iPad.storyboard; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		B59B071518D2300500C2B5E5 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B59B7E5718C66910007C1FBD /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
@@ -145,7 +147,8 @@
 				75908F3518DC9C2A007861B7 /* Controller */,
 				FCC051FE19DB60620031A838 /* Helpers */,
 				22186D0E183D86A5005E42AC /* Supporting Files */,
-				22186D22183D86A5005E42AC /* Images.xcassets */,
+				22186D22183D86A5005E42AC /* Assets.xcassets */,
+				B560C0271C2E5A070036635A /* Launch Screen.storyboard */,
 			);
 			path = uMobile;
 			sourceTree = "<group>";
@@ -302,7 +305,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22186D23183D86A5005E42AC /* Images.xcassets in Resources */,
+				B560C0281C2E5A070036635A /* Launch Screen.storyboard in Resources */,
+				22186D23183D86A5005E42AC /* Assets.xcassets in Resources */,
 				22186D12183D86A5005E42AC /* InfoPlist.strings in Resources */,
 				B58AF2141964A2130023731F /* Main_iPad.storyboard in Resources */,
 				B5F9795118D8CDEA001B48A1 /* Other Services Portlets.plist in Resources */,
@@ -436,7 +440,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -461,7 +464,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
