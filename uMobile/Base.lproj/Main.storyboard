@@ -75,6 +75,7 @@
                                     <outlet property="cellDescription" destination="36d-zI-Ztp" id="ylB-xY-rnd"/>
                                     <outlet property="cellImage" destination="LcY-J9-b1A" id="ISX-pI-a2W"/>
                                     <outlet property="cellTitle" destination="ONM-yq-4Hq" id="Yy1-rp-c0O"/>
+                                    <segue destination="8J8-jR-asB" kind="showDetail" identifier="ShowPortlet" id="zwb-ea-8Nx"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -489,4 +490,7 @@ It looks best with a couple paragraphs worth of text.</string>
         <image name="Forward" width="22" height="22"/>
         <image name="uMobile" width="115" height="28"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="zwb-ea-8Nx"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -460,9 +460,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"ShowPortlet"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        PortletViewController *portletViewController = navigationController.childViewControllers.firstObject;
+
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDictionary *dict = self.sectionContents[(NSUInteger)indexPath.section][(NSUInteger)indexPath.row];
-        [[segue destinationViewController] setPortletInfo:dict];
+        [portletViewController setPortletInfo:dict];
     }
 
 }
