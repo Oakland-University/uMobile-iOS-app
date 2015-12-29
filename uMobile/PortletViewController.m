@@ -182,13 +182,14 @@
 #pragma mark - View Configuration
 
 - (void)configureView {
+    self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+    self.navigationItem.leftItemsSupplementBackButton = YES;
+
     // Use the info dictionary to set up the view's contents
     if (self.portletInfo) {
         // Set the title
         NSString *portletName = (self.portletInfo)[@"title"];
         self.navigationItem.title = portletName;
-        self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        self.navigationItem.leftItemsSupplementBackButton = YES;
 
         self.webView.scalesPageToFit = YES; // enable zoom
 
