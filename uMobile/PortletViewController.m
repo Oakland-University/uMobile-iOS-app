@@ -20,6 +20,7 @@
 @interface PortletViewController ()
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIImageView *placeholderImageView;
 
 @property (nonatomic, weak) IBOutlet UIProgressView *progressView;
 @property (nonatomic, strong) NJKWebViewProgress *progressProxy;
@@ -199,6 +200,8 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         self.progressView.progress = 0.0;
         [self.webView loadRequest:request];
+    } else {
+        self.placeholderImageView.hidden = NO;
     }
 }
 

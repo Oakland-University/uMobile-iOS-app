@@ -154,6 +154,9 @@
                             <progressView hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cjX-ZT-1cs">
                                 <rect key="frame" x="0.0" y="64" width="600" height="2.5"/>
                             </progressView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Tbq-rQ-q7F">
+                                <rect key="frame" x="180" y="177" width="240" height="245"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -164,7 +167,9 @@
                             <constraint firstItem="wkH-uf-jNf" firstAttribute="top" secondItem="1H0-Bo-veH" secondAttribute="top" id="QSu-rx-t7J"/>
                             <constraint firstItem="cjX-ZT-1cs" firstAttribute="top" secondItem="M1e-pp-0pq" secondAttribute="bottom" id="SZ3-jq-BKu"/>
                             <constraint firstItem="wkH-uf-jNf" firstAttribute="leading" secondItem="cjX-ZT-1cs" secondAttribute="leading" id="eLQ-VA-7jG"/>
+                            <constraint firstItem="Tbq-rQ-q7F" firstAttribute="centerY" secondItem="1H0-Bo-veH" secondAttribute="centerY" id="eVU-6E-Hbu"/>
                             <constraint firstItem="wkH-uf-jNf" firstAttribute="bottom" secondItem="iYH-4H-cGo" secondAttribute="bottom" id="hCw-5S-COf"/>
+                            <constraint firstItem="Tbq-rQ-q7F" firstAttribute="centerX" secondItem="1H0-Bo-veH" secondAttribute="centerX" id="jpp-4Q-qdR"/>
                             <constraint firstItem="wkH-uf-jNf" firstAttribute="leading" secondItem="iYH-4H-cGo" secondAttribute="leading" id="mca-dV-s5H"/>
                             <constraint firstItem="wkH-uf-jNf" firstAttribute="trailing" secondItem="cjX-ZT-1cs" secondAttribute="trailing" id="vfg-7S-myv"/>
                         </constraints>
@@ -174,6 +179,7 @@
                         <outlet property="backButton" destination="qFL-Yz-uUG" id="B51-ZS-eUp"/>
                         <outlet property="forwardButton" destination="17G-3a-prN" id="d12-TI-zIM"/>
                         <outlet property="navigationToolbar" destination="iYH-4H-cGo" id="dce-8o-mB2"/>
+                        <outlet property="placeholderImageView" destination="Tbq-rQ-q7F" id="Btx-xE-5j0"/>
                         <outlet property="progressView" destination="cjX-ZT-1cs" id="N5X-7P-eaG"/>
                         <outlet property="refreshButton" destination="bRb-lA-e5v" id="6no-OA-mD3"/>
                         <outlet property="stopButton" destination="kZF-pd-ygh" id="ydo-LS-XYD"/>
@@ -488,6 +494,7 @@ It looks best with a couple paragraphs worth of text.</string>
     <resources>
         <image name="Back" width="22" height="22"/>
         <image name="Forward" width="22" height="22"/>
+        <image name="Placeholder Logo" width="240" height="245"/>
         <image name="uMobile" width="115" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
