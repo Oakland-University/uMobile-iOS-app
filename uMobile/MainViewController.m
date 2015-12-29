@@ -17,12 +17,13 @@
 #import "Authenticator.h"
 #import "Reachability.h"
 
-@interface MainViewController ()
+@interface MainViewController () <UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *sectionContents;
 @property (nonatomic, strong) NSMutableArray *sectionTitles;
 
 @property (nonatomic, getter = shouldConfigureViewNextApperance) BOOL configureViewNextAppearance;
+@property (nonatomic) BOOL shouldCollapsePortletViewController;
 @property (nonatomic, strong) NSIndexPath *mostRecentlySelectedIndexPath;
 
 @property (nonatomic, strong) TableActivityIndicatorView *tableActivityIndicatorView;
@@ -70,6 +71,9 @@
     [super viewDidLoad];
 
     [self theme];
+
+    self.shouldCollapsePortletViewController = YES;
+    self.splitViewController.delegate = self;
 
     [[Config sharedConfig] checkWithCompletion:^{
         BOOL shouldContinueConfiguration = [self performInitialSetup];
@@ -433,6 +437,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Save the indexPath for later, to avoid cells getting stuck with a gray background
     self.mostRecentlySelectedIndexPath = indexPath;
+    self.shouldCollapsePortletViewController = NO;
+}
+
+#pragma mark - UISplitViewControllerDelegate
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController
+collapseSecondaryViewController:(UIViewController *)secondaryViewController
+  ontoPrimaryViewController:(UIViewController *)primaryViewController {
+    return self.shouldCollapsePortletViewController;
 }
 
 #pragma mark - Actions
