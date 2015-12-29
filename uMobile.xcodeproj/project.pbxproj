@@ -62,7 +62,6 @@
 		75D3A09718BE9741008D7239 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LoginViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		75D3A09818BE9741008D7239 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LoginViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		75E5AF1E18C52B4400CF6EBE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		B515F5791964A7D7007B37F8 /* PortletSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortletSelectionDelegate.h; sourceTree = "<group>"; };
 		B52E8EC7195DEFDC001363D2 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		B52E8EC8195DEFDC001363D2 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
 		B560C0271C2E5A070036635A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -245,7 +244,6 @@
 				FCC051FC19DB60530031A838 /* Config.m */,
 				752698E418DC7C33002234FC /* LayoutJSON.h */,
 				752698E518DC7C33002234FC /* LayoutJSON.m */,
-				B515F5791964A7D7007B37F8 /* PortletSelectionDelegate.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";

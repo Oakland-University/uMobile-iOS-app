@@ -25,9 +25,8 @@
 
 #import <UIKit/UIKit.h>
 #import "NJKWebViewProgress.h"
-#import "PortletSelectionDelegate.h"
 
-@interface PortletViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, UISplitViewControllerDelegate, PortletSelectionDelegate>
+@interface PortletViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) NSDictionary *portletInfo;
 @property (nonatomic, strong) UIBarButtonItem *loggingInBarButtonItem;

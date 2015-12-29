@@ -237,12 +237,6 @@
     [self.tableView reloadData];
 
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-
-    // Select the first portlet by default on iPad
-    if (self.delegate) {
-        NSDictionary *portletInfo = self.sectionContents[0][0];
-        [self.delegate selectedPortlet:portletInfo];
-    }
 }
 
 - (void)configureViewWhenPossible {
@@ -439,15 +433,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Save the indexPath for later, to avoid cells getting stuck with a gray background
     self.mostRecentlySelectedIndexPath = indexPath;
-
-    NSDictionary *portletInfo = self.sectionContents[(NSUInteger)indexPath.section][(NSUInteger)indexPath.row];
-    if (self.delegate) {
-        [self.delegate selectedPortlet:portletInfo];
-        PortletViewController *portletViewController = (PortletViewController *)self.delegate;
-        if (portletViewController.pc) {
-            [portletViewController.pc dismissPopoverAnimated:YES];
-        }
-    }
 }
 
 #pragma mark - Actions

@@ -59,11 +59,6 @@
 
 #pragma mark - Detail Item Configuration
 
-- (void)selectedPortlet:(NSDictionary *)portletInfo {
-    self.portletInfo = portletInfo;
-    [self configureView];
-}
-
 - (void)setPortletInfo:(NSDictionary *)portletInfo {
     if (_portletInfo != portletInfo) {
         _portletInfo = portletInfo;

@@ -26,11 +26,8 @@
         // Set up the view controllers found in the Main_iPad storyboard
         UISplitViewController *splitViewController = (UISplitViewController *)viewController;
         splitViewController.view.backgroundColor = kPrimaryTintColor;
-        UINavigationController *navigationController = splitViewController.viewControllers[0];
-        MainViewController *mainViewController = (MainViewController *)navigationController.topViewController;
         PortletViewController *portletViewController = (PortletViewController *)
             ((UINavigationController *)splitViewController.viewControllers[1]).topViewController;
-        mainViewController.delegate = portletViewController;
         splitViewController.delegate = portletViewController;
     }
     return YES;
