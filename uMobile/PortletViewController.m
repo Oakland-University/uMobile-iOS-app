@@ -192,6 +192,8 @@
         // Set the title
         NSString *portletName = (self.portletInfo)[@"title"];
         self.navigationItem.title = portletName;
+        self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+        self.navigationItem.leftItemsSupplementBackButton = YES;
 
         self.webView.scalesPageToFit = YES; // enable zoom
 
