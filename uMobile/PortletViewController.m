@@ -66,7 +66,7 @@
     [super viewDidLoad];
 
     [self performInitialSetup];
-    [self logInOrConfigureView];
+    [self configureView];
 }
 
 - (void)performInitialSetup {
@@ -77,12 +77,6 @@
     [activityIndicatorView startAnimating];
 
     self.activityIndicatorBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView];
-
-    self.loggingInBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLoggingInText
-                                                                   style:UIBarButtonItemStylePlain
-                                                                  target:nil
-                                                                  action:nil];
-    self.loggingInBarButtonItem.enabled = NO;
 
     self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
@@ -115,18 +109,6 @@
 
     self.networkReachability = [Reachability reachabilityForInternetConnection];
     self.keychain = [[KeychainItemWrapper alloc] initWithIdentifier:kUPortalCredentials accessGroup:nil];
-}
-
--(void)logInOrConfigureView {
-    if (self.splitViewController && [[Authenticator sharedAuthenticator] hasStoredCredentials]) {
-        // Add a loading indication to the navigation bar
-        NSArray *loggingInItems = @[self.loggingInBarButtonItem, self.activityIndicatorBarButtonItem];
-        self.navigationItem.rightBarButtonItems = loggingInItems;
-        [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
-        // implicitly call configureView after a login success notification
-    } else {
-        [self configureView];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
