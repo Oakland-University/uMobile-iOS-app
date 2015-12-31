@@ -17,12 +17,13 @@
 #import "Authenticator.h"
 #import "Reachability.h"
 
-@interface MainViewController ()
+@interface MainViewController () <UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *sectionContents;
 @property (nonatomic, strong) NSMutableArray *sectionTitles;
 
 @property (nonatomic, getter = shouldConfigureViewNextApperance) BOOL configureViewNextAppearance;
+@property (nonatomic) BOOL shouldCollapsePortletViewController;
 @property (nonatomic, strong) NSIndexPath *mostRecentlySelectedIndexPath;
 
 @property (nonatomic, strong) TableActivityIndicatorView *tableActivityIndicatorView;
@@ -70,6 +71,9 @@
     [super viewDidLoad];
 
     [self theme];
+
+    self.shouldCollapsePortletViewController = YES;
+    self.splitViewController.delegate = self;
 
     [[Config sharedConfig] checkWithCompletion:^{
         BOOL shouldContinueConfiguration = [self performInitialSetup];
@@ -186,20 +190,10 @@
     self.sectionTitles = [[NSMutableArray alloc] initWithCapacity:[folders count]];
     self.sectionContents = [[NSMutableArray alloc] init];
 
-    if (!self.splitViewController) {
-        if ([dictJSON[@"user"] isEqualToString:@"guest"]) {
-            [self configureLogInButton];
-        } else {
-            [self configureLogOutButton];
-        }
+    if ([dictJSON[@"user"] isEqualToString:@"guest"]) {
+        [self configureLogInButton];
     } else {
-        UINavigationController *navigationController = self.splitViewController.viewControllers[1];
-        PortletViewController *portletViewController = [navigationController.childViewControllers firstObject];
-        if ([dictJSON[@"user"] isEqualToString:@"guest"]) {
-            [portletViewController configureLogInButton];
-        } else {
-            [portletViewController configureLogOutButton];
-        }
+        [self configureLogOutButton];
     }
 
     Config *config = [Config sharedConfig];
@@ -237,12 +231,6 @@
     [self.tableView reloadData];
 
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-
-    // Select the first portlet by default on iPad
-    if (self.delegate) {
-        NSDictionary *portletInfo = self.sectionContents[0][0];
-        [self.delegate selectedPortlet:portletInfo];
-    }
 }
 
 - (void)configureViewWhenPossible {
@@ -439,15 +427,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Save the indexPath for later, to avoid cells getting stuck with a gray background
     self.mostRecentlySelectedIndexPath = indexPath;
+    self.shouldCollapsePortletViewController = NO;
+}
 
-    NSDictionary *portletInfo = self.sectionContents[(NSUInteger)indexPath.section][(NSUInteger)indexPath.row];
-    if (self.delegate) {
-        [self.delegate selectedPortlet:portletInfo];
-        PortletViewController *portletViewController = (PortletViewController *)self.delegate;
-        if (portletViewController.pc) {
-            [portletViewController.pc dismissPopoverAnimated:YES];
-        }
-    }
+#pragma mark - UISplitViewControllerDelegate
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController
+collapseSecondaryViewController:(UIViewController *)secondaryViewController
+  ontoPrimaryViewController:(UIViewController *)primaryViewController {
+    return self.shouldCollapsePortletViewController;
 }
 
 #pragma mark - Actions
@@ -475,9 +463,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"ShowPortlet"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        PortletViewController *portletViewController = navigationController.childViewControllers.firstObject;
+
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDictionary *dict = self.sectionContents[(NSUInteger)indexPath.section][(NSUInteger)indexPath.row];
-        [[segue destinationViewController] setPortletInfo:dict];
+        [portletViewController setPortletInfo:dict];
     }
 
 }
