@@ -36,9 +36,6 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *stopButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *refreshButton;
 
-// iPad-only properties
-@property (nonatomic, strong) UITapGestureRecognizer *tapOutGestureRecognizer;
-
 @property (nonatomic) CGFloat lastOffset;
 @property (nonatomic) CGFloat topOffset;
 @property (nonatomic) CGFloat bottomOffset;
@@ -152,19 +149,6 @@
         [self presentErrorViewController];
     }
 
-    if (self.splitViewController && !self.tapOutGestureRecognizer && !self.presentingViewController) {
-
-        // Cancel if Config should show ErrorViewController to avoid making that controller dismissable.
-        if ([Config sharedConfig].unrecoverableError) { return; }
-
-        self.tapOutGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                               action:@selector(tapOutDetected:)];
-        self.tapOutGestureRecognizer.numberOfTapsRequired = 1;
-        self.tapOutGestureRecognizer.cancelsTouchesInView = NO; // to still allow interaction in the presented view
-
-        [self.view.window addGestureRecognizer:self.tapOutGestureRecognizer];
-    }
-
     if ([self shouldReloadRequestNextApperance]) {
         self.reloadRequestNextAppearance = NO;
         [self.webView loadRequest:self.URLRequestToReload];
@@ -263,21 +247,6 @@
     CGSize contentSize = self.webView.scrollView.contentSize;
     CGRect rect = CGRectMake(0, 0, contentSize.width, self.webView.bounds.size.height);
     [self.webView.scrollView zoomToRect:rect animated:YES];
-}
-
-- (void)tapOutDetected:(UITapGestureRecognizer *)sender {
-    // Dismiss modal view controllers on iPad when tapped outside their bounds.
-    if (sender.state == UIGestureRecognizerStateEnded) {
-        UIViewController *mainViewController = [self.splitViewController.viewControllers firstObject];
-        UIViewController *infoViewController = mainViewController.presentedViewController;
-        if (infoViewController) {
-            CGPoint point = [sender locationInView:nil]; // returns coordinates in window
-            CGPoint convertedPoint = [infoViewController.view convertPoint:point fromView:self.view.window];
-            if (![infoViewController.view pointInside:convertedPoint withEvent:nil]) {
-                [infoViewController dismissViewControllerAnimated:YES completion:nil];
-            }
-        }
-    }
 }
 
 // Called when a login success notification occurs.
