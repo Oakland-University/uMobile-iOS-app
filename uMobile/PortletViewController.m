@@ -37,7 +37,6 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *refreshButton;
 
 // iPad-only properties
-@property (nonatomic, strong) UIView *coverView;
 @property (nonatomic, strong) UITapGestureRecognizer *tapOutGestureRecognizer;
 
 @property (nonatomic) CGFloat lastOffset;
@@ -205,14 +204,6 @@
     // Set the bar tint on iPad since this view controller has its own UINavigationController
     self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
-
-    // Place a solid-color view over the UISplitViewController divider line to "hide" it.
-    self.coverView = [[UIView alloc] initWithFrame:CGRectMake(320, 0, 1, 64)];
-    self.coverView.backgroundColor = kSecondaryTintColor;
-    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        self.coverView.hidden = YES;
-    }
-    [self.splitViewController.view addSubview:self.coverView];
 }
 
 - (void)configureNavigationToolbar {
@@ -231,16 +222,6 @@
 }
 
 #pragma mark - Responding to Orientation Changes
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if (self.splitViewController) {
-        if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-            self.coverView.hidden = YES;
-        } else {
-            self.coverView.hidden = NO;
-        }
-    }
-}
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self updateTopOffset];
