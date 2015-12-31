@@ -25,8 +25,6 @@
 @property (nonatomic, weak) IBOutlet UIProgressView *progressView;
 @property (nonatomic, strong) NJKWebViewProgress *progressProxy;
 
-@property (nonatomic) int webViewLoads;
-
 // Only used when in a split view controller
 @property (nonatomic, strong) UIBarButtonItem *activityIndicatorBarButtonItem;
 
@@ -205,10 +203,6 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self updateTopOffset];
-
-    if (self.splitViewController) {
-        [self zoomWebView];
-    }
 }
 
 #pragma mark - Miscellaneous
@@ -237,12 +231,6 @@
             self.progressView.progress = 0;
         }];
     });
-}
-
-- (void)zoomWebView {
-    CGSize contentSize = self.webView.scrollView.contentSize;
-    CGRect rect = CGRectMake(0, 0, contentSize.width, self.webView.bounds.size.height);
-    [self.webView.scrollView zoomToRect:rect animated:YES];
 }
 
 // Called when a login success notification occurs.
@@ -302,19 +290,11 @@
 #pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    self.webViewLoads--;
-
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self configureNavigationToolbar];
-
-    if (self.webViewLoads == 0 && (self.splitViewController || self.presentingViewController)) {
-        [self zoomWebView];
-    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    self.webViewLoads++;
-
     // start a spinner for the user to know that the page is loading
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     self.progressView.alpha = 1.0;
@@ -322,8 +302,6 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    self.webViewLoads = 0;
-
     [self resetProgressView];
     self.stopButton.enabled = NO;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
