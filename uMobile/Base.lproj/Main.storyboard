@@ -102,6 +102,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="LPN-QC-FrP" kind="presentation" identifier="LogInFromMain" modalPresentationStyle="formSheet" id="XAj-HS-t3X"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tc4-gz-AEc" sceneMemberID="firstResponder"/>
             </objects>
@@ -155,7 +158,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="2.5"/>
                             </progressView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Tbq-rQ-q7F">
-                                <rect key="frame" x="180" y="177" width="240" height="245"/>
+                                <rect key="frame" x="180" y="179.5" width="240" height="240"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -494,10 +497,11 @@ It looks best with a couple paragraphs worth of text.</string>
     <resources>
         <image name="Back" width="22" height="22"/>
         <image name="Forward" width="22" height="22"/>
-        <image name="Placeholder Logo" width="240" height="245"/>
+        <image name="Placeholder Logo" width="240" height="240"/>
         <image name="uMobile" width="115" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="XAj-HS-t3X"/>
         <segue reference="zwb-ea-8Nx"/>
     </inferredMetricsTieBreakers>
 </document>

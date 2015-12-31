@@ -32,9 +32,6 @@
 @property (nonatomic, strong) UIBarButtonItem *loggingInBarButtonItem;
 @property (nonatomic, strong) UIPopoverController *pc;
 
-- (void)configureLogInButton;
-- (void)configureLogOutButton;
-
 - (void)presentErrorViewController;
 
 @end

@@ -106,10 +106,6 @@
                                             selector:@selector(reloadRequestNextAppearance:)
                                                 name:kLoginSuccessNotification object:nil];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                            selector:@selector(rememberMeFailure)
-                                                name:kRememberMeFailureNotification object:nil];
-
     // Set up progress bar
     [self.progressView setHidden:NO];
     __weak PortletViewController *weakSelf = self;
@@ -234,20 +230,6 @@
     self.stopButton.enabled = [self.webView isLoading];
 }
 
-- (void)configureLogInButton {
-    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithTitle:@"Log In"
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:self
-                                                                                action:@selector(logIn:)]];
-}
-
-- (void)configureLogOutButton {
-    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithTitle:@"Log Out"
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:self
-                                                                                action:@selector(logOut:)]];
-}
-
 #pragma mark - Responding to Orientation Changes
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -325,20 +307,6 @@
 - (void)resetProgressView {
     self.progressView.alpha = 0.0;
     self.progressView.progress = 0.0;
-}
-
-- (void)rememberMeFailure {
-    if (self.splitViewController) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failure"
-                                                        message:@"Unfortunately, you could not be logged in automatically "
-                                                                 "with your saved credentials. Please try logging in again."
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        [self configureLogInButton];
-        [self configureView];
-    }
 }
 
 #pragma mark - UISplitViewControllerDelegate
@@ -465,22 +433,6 @@
     // Neither the main portlet list nor non-mobile portlet; continue to load as-is
     self.URLRequestToReload = request; // save the request in case an unexpected login occurs
     return YES;
-}
-
-#pragma mark - Actions
-
-- (IBAction)logOut:(id)sender {
-    // Show and animate the activity indicator
-    UIBarButtonItem *disabledLogOutButton = [[UIBarButtonItem alloc] init];
-    disabledLogOutButton.title = @"Log Out";
-    disabledLogOutButton.enabled = NO;
-
-    self.navigationItem.rightBarButtonItems = @[disabledLogOutButton, self.activityIndicatorBarButtonItem];
-    [[Authenticator sharedAuthenticator] logOut];
-}
-
-- (IBAction)logIn:(id)sender {
-    [self performSegueWithIdentifier:@"LogInFromPortlet" sender:self];
 }
 
 @end

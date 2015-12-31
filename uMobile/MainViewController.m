@@ -190,20 +190,10 @@
     self.sectionTitles = [[NSMutableArray alloc] initWithCapacity:[folders count]];
     self.sectionContents = [[NSMutableArray alloc] init];
 
-    if (!self.splitViewController) {
-        if ([dictJSON[@"user"] isEqualToString:@"guest"]) {
-            [self configureLogInButton];
-        } else {
-            [self configureLogOutButton];
-        }
+    if ([dictJSON[@"user"] isEqualToString:@"guest"]) {
+        [self configureLogInButton];
     } else {
-        UINavigationController *navigationController = self.splitViewController.viewControllers[1];
-        PortletViewController *portletViewController = [navigationController.childViewControllers firstObject];
-        if ([dictJSON[@"user"] isEqualToString:@"guest"]) {
-            [portletViewController configureLogInButton];
-        } else {
-            [portletViewController configureLogOutButton];
-        }
+        [self configureLogOutButton];
     }
 
     Config *config = [Config sharedConfig];
