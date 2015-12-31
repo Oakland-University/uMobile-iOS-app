@@ -86,7 +86,9 @@
                                                                   action:nil];
     self.loggingInBarButtonItem.enabled = NO;
 
-    [self configureSplitViewAppearance];
+    self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
+
     [self updateTopOffset];
 
     self.webView.scalesPageToFit = YES;
@@ -182,12 +184,6 @@
     } else {
         self.placeholderImageView.hidden = NO;
     }
-}
-
-- (void)configureSplitViewAppearance {
-    // Set the bar tint on iPad since this view controller has its own UINavigationController
-    self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
 }
 
 - (void)configureNavigationToolbar {
