@@ -25,8 +25,6 @@
 @property (nonatomic, weak) IBOutlet UIProgressView *progressView;
 @property (nonatomic, strong) NJKWebViewProgress *progressProxy;
 
-@property (nonatomic) int webViewLoads;
-
 // Only used when in a split view controller
 @property (nonatomic, strong) UIBarButtonItem *activityIndicatorBarButtonItem;
 
@@ -35,10 +33,6 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *forwardButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *stopButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *refreshButton;
-
-// iPad-only properties
-@property (nonatomic, strong) UIView *coverView;
-@property (nonatomic, strong) UITapGestureRecognizer *tapOutGestureRecognizer;
 
 @property (nonatomic) CGFloat lastOffset;
 @property (nonatomic) CGFloat topOffset;
@@ -90,7 +84,9 @@
                                                                   action:nil];
     self.loggingInBarButtonItem.enabled = NO;
 
-    [self configureSplitViewAppearance];
+    self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
+
     [self updateTopOffset];
 
     self.webView.scalesPageToFit = YES;
@@ -153,19 +149,6 @@
         [self presentErrorViewController];
     }
 
-    if (self.splitViewController && !self.tapOutGestureRecognizer && !self.presentingViewController) {
-
-        // Cancel if Config should show ErrorViewController to avoid making that controller dismissable.
-        if ([Config sharedConfig].unrecoverableError) { return; }
-
-        self.tapOutGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                               action:@selector(tapOutDetected:)];
-        self.tapOutGestureRecognizer.numberOfTapsRequired = 1;
-        self.tapOutGestureRecognizer.cancelsTouchesInView = NO; // to still allow interaction in the presented view
-
-        [self.view.window addGestureRecognizer:self.tapOutGestureRecognizer];
-    }
-
     if ([self shouldReloadRequestNextApperance]) {
         self.reloadRequestNextAppearance = NO;
         [self.webView loadRequest:self.URLRequestToReload];
@@ -201,20 +184,6 @@
     }
 }
 
-- (void)configureSplitViewAppearance {
-    // Set the bar tint on iPad since this view controller has its own UINavigationController
-    self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
-
-    // Place a solid-color view over the UISplitViewController divider line to "hide" it.
-    self.coverView = [[UIView alloc] initWithFrame:CGRectMake(320, 0, 1, 64)];
-    self.coverView.backgroundColor = kSecondaryTintColor;
-    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        self.coverView.hidden = YES;
-    }
-    [self.splitViewController.view addSubview:self.coverView];
-}
-
 - (void)configureNavigationToolbar {
     // Show the navigation toolbar only when outside of the uPortal domain.
     if ([[self.webView.request.URL absoluteString] rangeOfString:kBaseURL].location == NSNotFound) {
@@ -232,22 +201,8 @@
 
 #pragma mark - Responding to Orientation Changes
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if (self.splitViewController) {
-        if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-            self.coverView.hidden = YES;
-        } else {
-            self.coverView.hidden = NO;
-        }
-    }
-}
-
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self updateTopOffset];
-
-    if (self.splitViewController) {
-        [self zoomWebView];
-    }
 }
 
 #pragma mark - Miscellaneous
@@ -276,27 +231,6 @@
             self.progressView.progress = 0;
         }];
     });
-}
-
-- (void)zoomWebView {
-    CGSize contentSize = self.webView.scrollView.contentSize;
-    CGRect rect = CGRectMake(0, 0, contentSize.width, self.webView.bounds.size.height);
-    [self.webView.scrollView zoomToRect:rect animated:YES];
-}
-
-- (void)tapOutDetected:(UITapGestureRecognizer *)sender {
-    // Dismiss modal view controllers on iPad when tapped outside their bounds.
-    if (sender.state == UIGestureRecognizerStateEnded) {
-        UIViewController *mainViewController = [self.splitViewController.viewControllers firstObject];
-        UIViewController *infoViewController = mainViewController.presentedViewController;
-        if (infoViewController) {
-            CGPoint point = [sender locationInView:nil]; // returns coordinates in window
-            CGPoint convertedPoint = [infoViewController.view convertPoint:point fromView:self.view.window];
-            if (![infoViewController.view pointInside:convertedPoint withEvent:nil]) {
-                [infoViewController dismissViewControllerAnimated:YES completion:nil];
-            }
-        }
-    }
 }
 
 // Called when a login success notification occurs.
@@ -356,19 +290,11 @@
 #pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    self.webViewLoads--;
-
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self configureNavigationToolbar];
-
-    if (self.webViewLoads == 0 && (self.splitViewController || self.presentingViewController)) {
-        [self zoomWebView];
-    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    self.webViewLoads++;
-
     // start a spinner for the user to know that the page is loading
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     self.progressView.alpha = 1.0;
@@ -376,8 +302,6 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    self.webViewLoads = 0;
-
     [self resetProgressView];
     self.stopButton.enabled = NO;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
