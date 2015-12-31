@@ -165,13 +165,11 @@
 
 - (void)logInOrConfigureView {
     if ([[Authenticator sharedAuthenticator] hasStoredCredentials]) {
-        if (!self.splitViewController) {
-            // Add a loading indication to the navigation bar
-            NSArray *loggingInItems = @[self.loggingInBarButtonItem, self.activityIndicatorBarButtonItem];
-            self.navigationItem.rightBarButtonItems = loggingInItems;
-            [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
-            // implicitly call configureView after a login success notification
-        }
+        // Add a loading indication to the navigation bar
+        NSArray *loggingInItems = @[self.loggingInBarButtonItem, self.activityIndicatorBarButtonItem];
+        self.navigationItem.rightBarButtonItems = loggingInItems;
+        [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
+        // implicitly call configureView after a login success notification
     } else {
         [self configureView];
     }
@@ -296,26 +294,12 @@
 - (void)handleNetworkChanges {
     // If the "logging in" bar button item is found in a navigation bar, it means the Internet connection was
     // offline when starting the app with saved credentials. Continue logging in if the network is now reachable.
-    if (!self.splitViewController) {
-        if ([self networkIsReachable]) {
-            if ([self.navigationItem.rightBarButtonItems containsObject:self.loggingInBarButtonItem]) {
-                [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
-            } else if ([self.navigationItem.rightBarButtonItems count] == 0) {
-                // The app must have started with no Internet connection nor saved credentials; re-configure the view.
-                [self configureView];
-            }
-        }
-    } else {
-        // The same logic as above but for the PortletViewController
-        UINavigationController *portletNavigationController = (UINavigationController *)self.splitViewController.viewControllers[1];
-        PortletViewController *portletViewController = [portletNavigationController.childViewControllers firstObject];
-        if ([self networkIsReachable]) {
-            if ([portletViewController.navigationItem.rightBarButtonItems
-                 containsObject:portletViewController.loggingInBarButtonItem]) {
-                [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
-            } else if ([portletViewController.navigationItem.rightBarButtonItems count] == 0) {
-                [self configureView];
-            }
+    if ([self networkIsReachable]) {
+        if ([self.navigationItem.rightBarButtonItems containsObject:self.loggingInBarButtonItem]) {
+            [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
+        } else if ([self.navigationItem.rightBarButtonItems count] == 0) {
+            // The app must have started with no Internet connection nor saved credentials; re-configure the view.
+            [self configureView];
         }
     }
 }

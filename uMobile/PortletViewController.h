@@ -29,7 +29,6 @@
 @interface PortletViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) NSDictionary *portletInfo;
-@property (nonatomic, strong) UIBarButtonItem *loggingInBarButtonItem;
 @property (nonatomic, strong) UIPopoverController *pc;
 
 - (void)presentErrorViewController;
