@@ -18,6 +18,7 @@
 		752698E618DC7C33002234FC /* LayoutJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 752698E518DC7C33002234FC /* LayoutJSON.m */; };
 		75D3A09918BE9741008D7239 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D3A09818BE9741008D7239 /* LoginViewController.m */; };
 		75E5AF1F18C52B4400CF6EBE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E5AF1E18C52B4400CF6EBE /* libxml2.dylib */; };
+		B51DD8971C387C0800B12701 /* TableActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DD8961C387C0800B12701 /* TableActivityIndicatorView.swift */; };
 		B52E8EC9195DEFDC001363D2 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = B52E8EC8195DEFDC001363D2 /* NSString+URLEncoding.m */; };
 		B54D4E1A1C375F9F00C9A6CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E191C375F9F00C9A6CD /* AppDelegate.swift */; };
 		B54D4E1C1C37617500C9A6CD /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E1B1C37617500C9A6CD /* ThemeColors.swift */; };
@@ -34,7 +35,6 @@
 		B5E3559219118C8700AD7506 /* Authenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3559119118C8700AD7506 /* Authenticator.m */; };
 		B5F9795118D8CDEA001B48A1 /* Other Services Portlets.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */; };
 		FC53FC5019E5DFD400FEBE73 /* ErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC53FC4F19E5DFD400FEBE73 /* ErrorViewController.m */; };
-		FC77CC101A0413E600DE6E98 /* TableActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC77CC0F1A0413E600DE6E98 /* TableActivityIndicatorView.m */; };
 		FCC051FD19DB60530031A838 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC051FC19DB60530031A838 /* Config.m */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +58,7 @@
 		75D3A09718BE9741008D7239 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LoginViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		75D3A09818BE9741008D7239 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LoginViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		75E5AF1E18C52B4400CF6EBE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		B51DD8961C387C0800B12701 /* TableActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableActivityIndicatorView.swift; sourceTree = "<group>"; };
 		B52E8EC7195DEFDC001363D2 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		B52E8EC8195DEFDC001363D2 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
 		B54D4E181C375F9F00C9A6CD /* uMobile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uMobile-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -83,8 +84,6 @@
 		B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Other Services Portlets.plist"; sourceTree = "<group>"; };
 		FC53FC4E19E5DFD400FEBE73 /* ErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorViewController.h; sourceTree = "<group>"; };
 		FC53FC4F19E5DFD400FEBE73 /* ErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorViewController.m; sourceTree = "<group>"; };
-		FC77CC0E1A0413E600DE6E98 /* TableActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableActivityIndicatorView.h; sourceTree = "<group>"; };
-		FC77CC0F1A0413E600DE6E98 /* TableActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableActivityIndicatorView.m; sourceTree = "<group>"; };
 		FCC051FB19DB60530031A838 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		FCC051FC19DB60530031A838 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,8 +167,7 @@
 			children = (
 				B54D4E1F1C385AAD00C9A6CD /* HeaderView.swift */,
 				B54D4E211C38746000C9A6CD /* TableCell.swift */,
-				FC77CC0E1A0413E600DE6E98 /* TableActivityIndicatorView.h */,
-				FC77CC0F1A0413E600DE6E98 /* TableActivityIndicatorView.m */,
+				B51DD8961C387C0800B12701 /* TableActivityIndicatorView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -314,9 +312,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B51DD8971C387C0800B12701 /* TableActivityIndicatorView.swift in Sources */,
 				FC53FC5019E5DFD400FEBE73 /* ErrorViewController.m in Sources */,
 				75D3A09918BE9741008D7239 /* LoginViewController.m in Sources */,
-				FC77CC101A0413E600DE6E98 /* TableActivityIndicatorView.m in Sources */,
 				B54D4E221C38746000C9A6CD /* TableCell.swift in Sources */,
 				B5E3559219118C8700AD7506 /* Authenticator.m in Sources */,
 				22186D1E183D86A5005E42AC /* MainViewController.m in Sources */,
