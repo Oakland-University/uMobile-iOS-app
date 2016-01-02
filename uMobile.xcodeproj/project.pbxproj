@@ -11,8 +11,6 @@
 		22186D0A183D86A5005E42AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22186D09183D86A5005E42AC /* CoreGraphics.framework */; };
 		22186D0C183D86A5005E42AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22186D0B183D86A5005E42AC /* UIKit.framework */; };
 		22186D12183D86A5005E42AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22186D10183D86A5005E42AC /* InfoPlist.strings */; };
-		22186D14183D86A5005E42AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D13183D86A5005E42AC /* main.m */; };
-		22186D18183D86A5005E42AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D17183D86A5005E42AC /* AppDelegate.m */; };
 		22186D1E183D86A5005E42AC /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D1D183D86A5005E42AC /* MainViewController.m */; };
 		22186D21183D86A5005E42AC /* PortletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D20183D86A5005E42AC /* PortletViewController.m */; };
 		22186D23183D86A5005E42AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22186D22183D86A5005E42AC /* Assets.xcassets */; };
@@ -22,6 +20,9 @@
 		75D3A09918BE9741008D7239 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D3A09818BE9741008D7239 /* LoginViewController.m */; };
 		75E5AF1F18C52B4400CF6EBE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E5AF1E18C52B4400CF6EBE /* libxml2.dylib */; };
 		B52E8EC9195DEFDC001363D2 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = B52E8EC8195DEFDC001363D2 /* NSString+URLEncoding.m */; };
+		B54D4E1A1C375F9F00C9A6CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E191C375F9F00C9A6CD /* AppDelegate.swift */; };
+		B54D4E1C1C37617500C9A6CD /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E1B1C37617500C9A6CD /* ThemeColors.swift */; };
+		B54D4E1E1C3767FE00C9A6CD /* StoryboardIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E1D1C3767FE00C9A6CD /* StoryboardIdentifier.swift */; };
 		B560C0281C2E5A070036635A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B560C0271C2E5A070036635A /* Launch Screen.storyboard */; };
 		B58AF2141964A2130023731F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58AF2131964A2130023731F /* Main.storyboard */; };
 		B59B7E5B18C66910007C1FBD /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B7E5818C66910007C1FBD /* NJKWebViewProgress.m */; };
@@ -44,10 +45,7 @@
 		22186D0B183D86A5005E42AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		22186D0F183D86A5005E42AC /* uMobile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "uMobile-Info.plist"; sourceTree = "<group>"; };
 		22186D11183D86A5005E42AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		22186D13183D86A5005E42AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		22186D15183D86A5005E42AC /* uMobile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uMobile-Prefix.pch"; sourceTree = "<group>"; };
-		22186D16183D86A5005E42AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		22186D17183D86A5005E42AC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		22186D1C183D86A5005E42AC /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MainViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		22186D1D183D86A5005E42AC /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MainViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		22186D1F183D86A5005E42AC /* PortletViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PortletViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -64,6 +62,10 @@
 		75E5AF1E18C52B4400CF6EBE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B52E8EC7195DEFDC001363D2 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		B52E8EC8195DEFDC001363D2 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		B54D4E181C375F9F00C9A6CD /* uMobile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uMobile-Bridging-Header.h"; sourceTree = "<group>"; };
+		B54D4E191C375F9F00C9A6CD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B54D4E1B1C37617500C9A6CD /* ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
+		B54D4E1D1C3767FE00C9A6CD /* StoryboardIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifier.swift; sourceTree = "<group>"; };
 		B560C0271C2E5A070036635A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B58AF2131964A2130023731F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B59B071518D2300500C2B5E5 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -136,8 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				B58AF2131964A2130023731F /* Main.storyboard */,
-				22186D16183D86A5005E42AC /* AppDelegate.h */,
-				22186D17183D86A5005E42AC /* AppDelegate.m */,
+				B54D4E191C375F9F00C9A6CD /* AppDelegate.swift */,
 				75908F3418DC9C15007861B7 /* Model */,
 				75908F3318DC9C02007861B7 /* View */,
 				75908F3518DC9C2A007861B7 /* Controller */,
@@ -145,6 +146,7 @@
 				22186D0E183D86A5005E42AC /* Supporting Files */,
 				22186D22183D86A5005E42AC /* Assets.xcassets */,
 				B560C0271C2E5A070036635A /* Launch Screen.storyboard */,
+				B54D4E181C375F9F00C9A6CD /* uMobile-Bridging-Header.h */,
 			);
 			path = uMobile;
 			sourceTree = "<group>";
@@ -158,7 +160,6 @@
 				FC53FC5119E6CE3900FEBE73 /* Reachability */,
 				22186D0F183D86A5005E42AC /* uMobile-Info.plist */,
 				22186D10183D86A5005E42AC /* InfoPlist.strings */,
-				22186D13183D86A5005E42AC /* main.m */,
 				22186D15183D86A5005E42AC /* uMobile-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -182,6 +183,8 @@
 			children = (
 				B59B071518D2300500C2B5E5 /* Constants.h */,
 				B5AC41A71906BFD100E78E34 /* Constants.m */,
+				B54D4E1B1C37617500C9A6CD /* ThemeColors.swift */,
+				B54D4E1D1C3767FE00C9A6CD /* StoryboardIdentifier.swift */,
 				B52E8EC7195DEFDC001363D2 /* NSString+URLEncoding.h */,
 				B52E8EC8195DEFDC001363D2 /* NSString+URLEncoding.m */,
 			);
@@ -317,21 +320,22 @@
 			files = (
 				FC53FC5019E5DFD400FEBE73 /* ErrorViewController.m in Sources */,
 				75D3A09918BE9741008D7239 /* LoginViewController.m in Sources */,
-				22186D18183D86A5005E42AC /* AppDelegate.m in Sources */,
 				FC77CC101A0413E600DE6E98 /* TableActivityIndicatorView.m in Sources */,
 				B5E3559219118C8700AD7506 /* Authenticator.m in Sources */,
 				22186D1E183D86A5005E42AC /* MainViewController.m in Sources */,
 				B59B7E5B18C66910007C1FBD /* NJKWebViewProgress.m in Sources */,
 				B5AC41A81906BFD100E78E34 /* Constants.m in Sources */,
+				B54D4E1A1C375F9F00C9A6CD /* AppDelegate.swift in Sources */,
 				229EE3F218989533004EAACB /* Reachability.m in Sources */,
 				B5B86625191ABB1100C9F460 /* HeaderView.m in Sources */,
 				B5AAC994191D028400F6DDA7 /* InfoViewController.m in Sources */,
 				752698E618DC7C33002234FC /* LayoutJSON.m in Sources */,
 				B5DC2DAC18DA0D4C001F0579 /* KeychainItemWrapper.m in Sources */,
 				B59B7E5C18C66910007C1FBD /* NJKWebViewProgressView.m in Sources */,
-				22186D14183D86A5005E42AC /* main.m in Sources */,
+				B54D4E1C1C37617500C9A6CD /* ThemeColors.swift in Sources */,
 				22186D41183D8859005E42AC /* TableCell.m in Sources */,
 				B52E8EC9195DEFDC001363D2 /* NSString+URLEncoding.m in Sources */,
+				B54D4E1E1C3767FE00C9A6CD /* StoryboardIdentifier.swift in Sources */,
 				FCC051FD19DB60530031A838 /* Config.m in Sources */,
 				22186D21183D86A5005E42AC /* PortletViewController.m in Sources */,
 			);
@@ -426,6 +430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -437,9 +442,12 @@
 				);
 				INFOPLIST_FILE = "uMobile/uMobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.umobile;
 				PRODUCT_NAME = uMobile;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "uMobile/uMobile-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				WRAPPER_EXTENSION = app;
@@ -450,6 +458,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -461,9 +470,11 @@
 				);
 				INFOPLIST_FILE = "uMobile/uMobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.umobile;
 				PRODUCT_NAME = uMobile;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "uMobile/uMobile-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				WRAPPER_EXTENSION = app;
