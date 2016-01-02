@@ -14,7 +14,6 @@
 		22186D1E183D86A5005E42AC /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D1D183D86A5005E42AC /* MainViewController.m */; };
 		22186D21183D86A5005E42AC /* PortletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D20183D86A5005E42AC /* PortletViewController.m */; };
 		22186D23183D86A5005E42AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22186D22183D86A5005E42AC /* Assets.xcassets */; };
-		22186D41183D8859005E42AC /* TableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22186D40183D8859005E42AC /* TableCell.m */; };
 		229EE3F218989533004EAACB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 229EE3F118989533004EAACB /* Reachability.m */; };
 		752698E618DC7C33002234FC /* LayoutJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 752698E518DC7C33002234FC /* LayoutJSON.m */; };
 		75D3A09918BE9741008D7239 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D3A09818BE9741008D7239 /* LoginViewController.m */; };
@@ -24,6 +23,7 @@
 		B54D4E1C1C37617500C9A6CD /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E1B1C37617500C9A6CD /* ThemeColors.swift */; };
 		B54D4E1E1C3767FE00C9A6CD /* StoryboardIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E1D1C3767FE00C9A6CD /* StoryboardIdentifier.swift */; };
 		B54D4E201C385AAD00C9A6CD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E1F1C385AAD00C9A6CD /* HeaderView.swift */; };
+		B54D4E221C38746000C9A6CD /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E211C38746000C9A6CD /* TableCell.swift */; };
 		B560C0281C2E5A070036635A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B560C0271C2E5A070036635A /* Launch Screen.storyboard */; };
 		B58AF2141964A2130023731F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58AF2131964A2130023731F /* Main.storyboard */; };
 		B59B7E5B18C66910007C1FBD /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B7E5818C66910007C1FBD /* NJKWebViewProgress.m */; };
@@ -51,8 +51,6 @@
 		22186D1F183D86A5005E42AC /* PortletViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PortletViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		22186D20183D86A5005E42AC /* PortletViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PortletViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		22186D22183D86A5005E42AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		22186D3F183D8859005E42AC /* TableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TableCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		22186D40183D8859005E42AC /* TableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TableCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		229EE3F018989533004EAACB /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		229EE3F118989533004EAACB /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		752698E418DC7C33002234FC /* LayoutJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LayoutJSON.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -67,6 +65,7 @@
 		B54D4E1B1C37617500C9A6CD /* ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		B54D4E1D1C3767FE00C9A6CD /* StoryboardIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifier.swift; sourceTree = "<group>"; };
 		B54D4E1F1C385AAD00C9A6CD /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		B54D4E211C38746000C9A6CD /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		B560C0271C2E5A070036635A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B58AF2131964A2130023731F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B59B071518D2300500C2B5E5 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -168,8 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				B54D4E1F1C385AAD00C9A6CD /* HeaderView.swift */,
-				22186D3F183D8859005E42AC /* TableCell.h */,
-				22186D40183D8859005E42AC /* TableCell.m */,
+				B54D4E211C38746000C9A6CD /* TableCell.swift */,
 				FC77CC0E1A0413E600DE6E98 /* TableActivityIndicatorView.h */,
 				FC77CC0F1A0413E600DE6E98 /* TableActivityIndicatorView.m */,
 			);
@@ -319,6 +317,7 @@
 				FC53FC5019E5DFD400FEBE73 /* ErrorViewController.m in Sources */,
 				75D3A09918BE9741008D7239 /* LoginViewController.m in Sources */,
 				FC77CC101A0413E600DE6E98 /* TableActivityIndicatorView.m in Sources */,
+				B54D4E221C38746000C9A6CD /* TableCell.swift in Sources */,
 				B5E3559219118C8700AD7506 /* Authenticator.m in Sources */,
 				22186D1E183D86A5005E42AC /* MainViewController.m in Sources */,
 				B59B7E5B18C66910007C1FBD /* NJKWebViewProgress.m in Sources */,
@@ -331,7 +330,6 @@
 				B54D4E201C385AAD00C9A6CD /* HeaderView.swift in Sources */,
 				B59B7E5C18C66910007C1FBD /* NJKWebViewProgressView.m in Sources */,
 				B54D4E1C1C37617500C9A6CD /* ThemeColors.swift in Sources */,
-				22186D41183D8859005E42AC /* TableCell.m in Sources */,
 				B52E8EC9195DEFDC001363D2 /* NSString+URLEncoding.m in Sources */,
 				B54D4E1E1C3767FE00C9A6CD /* StoryboardIdentifier.swift in Sources */,
 				FCC051FD19DB60530031A838 /* Config.m in Sources */,

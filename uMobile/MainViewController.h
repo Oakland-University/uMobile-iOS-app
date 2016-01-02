@@ -26,7 +26,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TableCell.h"
 
 @interface MainViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
