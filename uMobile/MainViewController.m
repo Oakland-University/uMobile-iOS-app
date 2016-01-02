@@ -13,7 +13,6 @@
 
 #import "Config.h"
 #import "LayoutJSON.h"
-#import "TableActivityIndicatorView.h"
 
 #import "Authenticator.h"
 #import "Reachability.h"
