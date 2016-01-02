@@ -8,8 +8,8 @@
 
 class TableCell: UITableViewCell {
 
-    @IBOutlet weak var cellImage: UIImageView!
-    @IBOutlet weak var cellTitle: UILabel!
-    @IBOutlet weak var cellDescription: UILabel!
+    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
 
 }

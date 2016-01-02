@@ -382,8 +382,8 @@
 
     NSDictionary *dict = self.sectionContents[(NSUInteger)indexPath.section][(NSUInteger)indexPath.row];
 
-    tableCell.cellTitle.text = dict[@"title"];
-    tableCell.cellDescription.text = dict[@"description"];
+    tableCell.titleLabel.text = dict[@"title"];
+    tableCell.descriptionLabel.text = dict[@"description"];
 
     // loading image that is saved to phone
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -399,7 +399,7 @@
             image = [UIImage imageNamed:@"Default"];
         }
     }
-    [tableCell.cellImage setImage:image];
+    [tableCell.thumbnailImageView setImage:image];
 
     return tableCell;
 }
