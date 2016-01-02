@@ -23,13 +23,13 @@
 		B54D4E1A1C375F9F00C9A6CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E191C375F9F00C9A6CD /* AppDelegate.swift */; };
 		B54D4E1C1C37617500C9A6CD /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E1B1C37617500C9A6CD /* ThemeColors.swift */; };
 		B54D4E1E1C3767FE00C9A6CD /* StoryboardIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E1D1C3767FE00C9A6CD /* StoryboardIdentifier.swift */; };
+		B54D4E201C385AAD00C9A6CD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D4E1F1C385AAD00C9A6CD /* HeaderView.swift */; };
 		B560C0281C2E5A070036635A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B560C0271C2E5A070036635A /* Launch Screen.storyboard */; };
 		B58AF2141964A2130023731F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58AF2131964A2130023731F /* Main.storyboard */; };
 		B59B7E5B18C66910007C1FBD /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B7E5818C66910007C1FBD /* NJKWebViewProgress.m */; };
 		B59B7E5C18C66910007C1FBD /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B7E5A18C66910007C1FBD /* NJKWebViewProgressView.m */; };
 		B5AAC994191D028400F6DDA7 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AAC993191D028400F6DDA7 /* InfoViewController.m */; };
 		B5AC41A81906BFD100E78E34 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AC41A71906BFD100E78E34 /* Constants.m */; };
-		B5B86625191ABB1100C9F460 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B86624191ABB1100C9F460 /* HeaderView.m */; };
 		B5DC2DAC18DA0D4C001F0579 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DC2DAB18DA0D4C001F0579 /* KeychainItemWrapper.m */; };
 		B5E3559219118C8700AD7506 /* Authenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E3559119118C8700AD7506 /* Authenticator.m */; };
 		B5F9795118D8CDEA001B48A1 /* Other Services Portlets.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5F9795018D8CDEA001B48A1 /* Other Services Portlets.plist */; };
@@ -66,6 +66,7 @@
 		B54D4E191C375F9F00C9A6CD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B54D4E1B1C37617500C9A6CD /* ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		B54D4E1D1C3767FE00C9A6CD /* StoryboardIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifier.swift; sourceTree = "<group>"; };
+		B54D4E1F1C385AAD00C9A6CD /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		B560C0271C2E5A070036635A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B58AF2131964A2130023731F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B59B071518D2300500C2B5E5 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -76,8 +77,6 @@
 		B5AAC992191D028300F6DDA7 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		B5AAC993191D028400F6DDA7 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		B5AC41A71906BFD100E78E34 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Constants.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		B5B86623191ABB1100C9F460 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
-		B5B86624191ABB1100C9F460 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		B5DC2DAA18DA0D4C001F0579 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		B5DC2DAB18DA0D4C001F0579 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		B5E3559019118C8700AD7506 /* Authenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Authenticator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -168,8 +167,7 @@
 		75908F3318DC9C02007861B7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B5B86623191ABB1100C9F460 /* HeaderView.h */,
-				B5B86624191ABB1100C9F460 /* HeaderView.m */,
+				B54D4E1F1C385AAD00C9A6CD /* HeaderView.swift */,
 				22186D3F183D8859005E42AC /* TableCell.h */,
 				22186D40183D8859005E42AC /* TableCell.m */,
 				FC77CC0E1A0413E600DE6E98 /* TableActivityIndicatorView.h */,
@@ -327,10 +325,10 @@
 				B5AC41A81906BFD100E78E34 /* Constants.m in Sources */,
 				B54D4E1A1C375F9F00C9A6CD /* AppDelegate.swift in Sources */,
 				229EE3F218989533004EAACB /* Reachability.m in Sources */,
-				B5B86625191ABB1100C9F460 /* HeaderView.m in Sources */,
 				B5AAC994191D028400F6DDA7 /* InfoViewController.m in Sources */,
 				752698E618DC7C33002234FC /* LayoutJSON.m in Sources */,
 				B5DC2DAC18DA0D4C001F0579 /* KeychainItemWrapper.m in Sources */,
+				B54D4E201C385AAD00C9A6CD /* HeaderView.swift in Sources */,
 				B59B7E5C18C66910007C1FBD /* NJKWebViewProgressView.m in Sources */,
 				B54D4E1C1C37617500C9A6CD /* ThemeColors.swift in Sources */,
 				22186D41183D8859005E42AC /* TableCell.m in Sources */,

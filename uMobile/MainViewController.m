@@ -6,11 +6,12 @@
 //  Copyright (c) 2014 Oakland University. All rights reserved.
 //
 
+#import "uMobile-Swift.h"
+
 #import "MainViewController.h"
 #import "PortletViewController.h"
 
 #import "Config.h"
-#import "HeaderView.h"
 #import "LayoutJSON.h"
 #import "TableActivityIndicatorView.h"
 
