@@ -20,11 +20,10 @@
 @interface PortletViewController ()
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIImageView *placeholderImageView;
 
 @property (nonatomic, weak) IBOutlet UIProgressView *progressView;
 @property (nonatomic, strong) NJKWebViewProgress *progressProxy;
-
-@property (nonatomic) int webViewLoads;
 
 // Only used when in a split view controller
 @property (nonatomic, strong) UIBarButtonItem *activityIndicatorBarButtonItem;
@@ -34,10 +33,6 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *forwardButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *stopButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *refreshButton;
-
-// iPad-only properties
-@property (nonatomic, strong) UIView *coverView;
-@property (nonatomic, strong) UITapGestureRecognizer *tapOutGestureRecognizer;
 
 @property (nonatomic) CGFloat lastOffset;
 @property (nonatomic) CGFloat topOffset;
@@ -59,11 +54,6 @@
 
 #pragma mark - Detail Item Configuration
 
-- (void)selectedPortlet:(NSDictionary *)portletInfo {
-    self.portletInfo = portletInfo;
-    [self configureView];
-}
-
 - (void)setPortletInfo:(NSDictionary *)portletInfo {
     if (_portletInfo != portletInfo) {
         _portletInfo = portletInfo;
@@ -76,7 +66,7 @@
     [super viewDidLoad];
 
     [self performInitialSetup];
-    [self logInOrConfigureView];
+    [self configureView];
 }
 
 - (void)performInitialSetup {
@@ -88,13 +78,9 @@
 
     self.activityIndicatorBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView];
 
-    self.loggingInBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLoggingInText
-                                                                   style:UIBarButtonItemStylePlain
-                                                                  target:nil
-                                                                  action:nil];
-    self.loggingInBarButtonItem.enabled = NO;
+    self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
 
-    [self configureSplitViewAppearance];
     [self updateTopOffset];
 
     self.webView.scalesPageToFit = YES;
@@ -110,37 +96,19 @@
                                             selector:@selector(reloadRequestNextAppearance:)
                                                 name:kLoginSuccessNotification object:nil];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                            selector:@selector(rememberMeFailure)
-                                                name:kRememberMeFailureNotification object:nil];
-
-    // Set up progress bar if iOS 7 or above
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [self.progressView setHidden:NO];
-        __weak PortletViewController *weakSelf = self;
-        [self.view bringSubviewToFront:self.progressView];
-        self.progressProxy.progressBlock = ^(float progress) {
-            [weakSelf.progressView setProgress:progress animated:YES];
-            if (progress >= 0.9f) {
-                [weakSelf pauseAndHideProgressView];
-            }
-        };
-    }
+    // Set up progress bar
+    [self.progressView setHidden:NO];
+    __weak PortletViewController *weakSelf = self;
+    [self.view bringSubviewToFront:self.progressView];
+    self.progressProxy.progressBlock = ^(float progress) {
+        [weakSelf.progressView setProgress:progress animated:YES];
+        if (progress >= 0.9f) {
+            [weakSelf pauseAndHideProgressView];
+        }
+    };
 
     self.networkReachability = [Reachability reachabilityForInternetConnection];
     self.keychain = [[KeychainItemWrapper alloc] initWithIdentifier:kUPortalCredentials accessGroup:nil];
-}
-
--(void)logInOrConfigureView {
-    if (self.splitViewController && [[Authenticator sharedAuthenticator] hasStoredCredentials]) {
-        // Add a loading indication to the navigation bar
-        NSArray *loggingInItems = @[self.loggingInBarButtonItem, self.activityIndicatorBarButtonItem];
-        self.navigationItem.rightBarButtonItems = loggingInItems;
-        [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
-        // implicitly call configureView after a login success notification
-    } else {
-        [self configureView];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -163,19 +131,6 @@
         [self presentErrorViewController];
     }
 
-    if (self.splitViewController && !self.tapOutGestureRecognizer && !self.presentingViewController) {
-
-        // Cancel if Config should show ErrorViewController to avoid making that controller dismissable.
-        if ([Config sharedConfig].unrecoverableError) { return; }
-
-        self.tapOutGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                               action:@selector(tapOutDetected:)];
-        self.tapOutGestureRecognizer.numberOfTapsRequired = 1;
-        self.tapOutGestureRecognizer.cancelsTouchesInView = NO; // to still allow interaction in the presented view
-
-        [self.view.window addGestureRecognizer:self.tapOutGestureRecognizer];
-    }
-
     if ([self shouldReloadRequestNextApperance]) {
         self.reloadRequestNextAppearance = NO;
         [self.webView loadRequest:self.URLRequestToReload];
@@ -189,6 +144,9 @@
 #pragma mark - View Configuration
 
 - (void)configureView {
+    self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+    self.navigationItem.leftItemsSupplementBackButton = YES;
+
     // Use the info dictionary to set up the view's contents
     if (self.portletInfo) {
         // Set the title
@@ -201,41 +159,11 @@
         NSString *urlString = (self.portletInfo)[@"url"];
         NSURL *url = [NSURL URLWithString:urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-            self.progressView.frame = CGRectMake(self.progressView.frame.origin.x,
-                                                 0,
-                                                 self.progressView.frame.size.width,
-                                                 self.progressView.frame.size.height);
-        }
         self.progressView.progress = 0.0;
         [self.webView loadRequest:request];
-    }
-}
-
-- (void)configureSplitViewAppearance {
-    // Set the bar tint on iPad since this view controller has its own UINavigationController
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
-        // iOS >= 7
-        self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
-        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
     } else {
-        // iOS < 7
-        self.navigationController.navigationBar.tintColor = kSecondaryTintColor;
-        [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: kTextTintColor}];
+        self.placeholderImageView.hidden = NO;
     }
-
-    // Place a solid-color view over the UISplitViewController divider line to "hide" it.
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-        self.coverView = [[UIView alloc] initWithFrame:CGRectMake(320, 0, 1, 44)];
-    } else {
-        // iOS 7+ displays the navigation bar behind the 20pt status bar
-        self.coverView = [[UIView alloc] initWithFrame:CGRectMake(320, 0, 1, 64)];
-    }
-    self.coverView.backgroundColor = kSecondaryTintColor;
-    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        self.coverView.hidden = YES;
-    }
-    [self.splitViewController.view addSubview:self.coverView];
 }
 
 - (void)configureNavigationToolbar {
@@ -253,56 +181,10 @@
     self.stopButton.enabled = [self.webView isLoading];
 }
 
-- (void)configureLogInButton {
-    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithTitle:@"Log In"
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:self
-                                                                                action:@selector(logIn:)]];
-}
-
-- (void)configureLogOutButton {
-    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithTitle:@"Log Out"
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:self
-                                                                                action:@selector(logOut:)]];
-}
-
 #pragma mark - Responding to Orientation Changes
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if (self.splitViewController) {
-        if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-            self.coverView.hidden = YES;
-        } else {
-            self.coverView.hidden = NO;
-        }
-
-        if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-            [self updateScrollViewZoomScalesForInterfaceOrientation:toInterfaceOrientation];
-        }
-    }
-}
-
-- (void)updateScrollViewZoomScalesForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    CGFloat aspectRatio = CGRectGetWidth(self.webView.bounds) / CGRectGetHeight(self.webView.bounds);
-    UIScrollView *scrollView = self.webView.scrollView;
-    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-        scrollView.minimumZoomScale = scrollView.minimumZoomScale / aspectRatio;
-        scrollView.maximumZoomScale = scrollView.maximumZoomScale / aspectRatio;
-        [scrollView setZoomScale:(scrollView.zoomScale / aspectRatio) animated:YES];
-    } else {
-        scrollView.minimumZoomScale = scrollView.minimumZoomScale * aspectRatio;
-        scrollView.maximumZoomScale = scrollView.maximumZoomScale * aspectRatio;
-        [scrollView setZoomScale:(scrollView.zoomScale * aspectRatio) animated:YES];
-    }
-}
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self updateTopOffset];
-
-    if (self.splitViewController) {
-        [self zoomWebView];
-    }
 }
 
 #pragma mark - Miscellaneous
@@ -316,14 +198,10 @@
 
 - (void)updateTopOffset {
     // Used to determine whether or not to display the web navigation toolbar.
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-        self.topOffset = 0;
-    } else {
-        CGFloat navigationAndStatusBarHeight = (CGRectGetHeight(self.navigationController.navigationBar.frame) +
-                                                MIN(CGRectGetHeight([UIApplication sharedApplication].statusBarFrame),
-                                                    CGRectGetWidth([UIApplication sharedApplication].statusBarFrame)));
-        self.topOffset = -navigationAndStatusBarHeight;
-    }
+    CGFloat navigationAndStatusBarHeight = (CGRectGetHeight(self.navigationController.navigationBar.frame) +
+                                            MIN(CGRectGetHeight([UIApplication sharedApplication].statusBarFrame),
+                                                CGRectGetWidth([UIApplication sharedApplication].statusBarFrame)));
+    self.topOffset = -navigationAndStatusBarHeight;
 }
 
 
@@ -337,27 +215,6 @@
     });
 }
 
-- (void)zoomWebView {
-    CGSize contentSize = self.webView.scrollView.contentSize;
-    CGRect rect = CGRectMake(0, 0, contentSize.width, self.webView.bounds.size.height);
-    [self.webView.scrollView zoomToRect:rect animated:YES];
-}
-
-- (void)tapOutDetected:(UITapGestureRecognizer *)sender {
-    // Dismiss modal view controllers on iPad when tapped outside their bounds.
-    if (sender.state == UIGestureRecognizerStateEnded) {
-        UIViewController *mainViewController = [self.splitViewController.viewControllers firstObject];
-        UIViewController *infoViewController = mainViewController.presentedViewController;
-        if (infoViewController) {
-            CGPoint point = [sender locationInView:nil]; // returns coordinates in window
-            CGPoint convertedPoint = [infoViewController.view convertPoint:point fromView:self.view.window];
-            if (![infoViewController.view pointInside:convertedPoint withEvent:nil]) {
-                [infoViewController dismissViewControllerAnimated:YES completion:nil];
-            }
-        }
-    }
-}
-
 // Called when a login success notification occurs.
 - (void)reloadRequestNextAppearance:(NSNotification *)notification {
     self.reloadRequestNextAppearance = YES;
@@ -368,31 +225,13 @@
     self.progressView.progress = 0.0;
 }
 
-- (void)rememberMeFailure {
-    if (self.splitViewController) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failure"
-                                                        message:@"Unfortunately, you could not be logged in automatically "
-                                                                 "with your saved credentials. Please try logging in again."
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        [self configureLogInButton];
-        [self configureView];
-    }
-}
-
 #pragma mark - UISplitViewControllerDelegate
 
 - (void)splitViewController:(UISplitViewController *)svc
      willHideViewController:(UIViewController *)aViewController
           withBarButtonItem:(UIBarButtonItem *)barButtonItem
        forPopoverController:(UIPopoverController *)pc {
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-        barButtonItem.title = kTitle;
-    } else {
-        barButtonItem.title = [NSString stringWithFormat:@"❮ %@", kTitle];
-    }
+    barButtonItem.title = [NSString stringWithFormat:@"❮ %@", kTitle];
     self.navigationItem.leftBarButtonItem = barButtonItem;
     self.pc = pc;
 }
@@ -433,19 +272,11 @@
 #pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    self.webViewLoads--;
-
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self configureNavigationToolbar];
-
-    if (self.webViewLoads == 0 && (self.splitViewController || self.presentingViewController)) {
-        [self zoomWebView];
-    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    self.webViewLoads++;
-
     // start a spinner for the user to know that the page is loading
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     self.progressView.alpha = 1.0;
@@ -453,8 +284,6 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    self.webViewLoads = 0;
-
     [self resetProgressView];
     self.stopButton.enabled = NO;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -510,22 +339,6 @@
     // Neither the main portlet list nor non-mobile portlet; continue to load as-is
     self.URLRequestToReload = request; // save the request in case an unexpected login occurs
     return YES;
-}
-
-#pragma mark - Actions
-
-- (IBAction)logOut:(id)sender {
-    // Show and animate the activity indicator
-    UIBarButtonItem *disabledLogOutButton = [[UIBarButtonItem alloc] init];
-    disabledLogOutButton.title = @"Log Out";
-    disabledLogOutButton.enabled = NO;
-
-    self.navigationItem.rightBarButtonItems = @[disabledLogOutButton, self.activityIndicatorBarButtonItem];
-    [[Authenticator sharedAuthenticator] logOut];
-}
-
-- (IBAction)logIn:(id)sender {
-    [self performSegueWithIdentifier:@"LogInFromPortlet" sender:self];
 }
 
 @end

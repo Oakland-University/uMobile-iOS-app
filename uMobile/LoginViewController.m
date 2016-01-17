@@ -15,6 +15,8 @@
 
 @interface LoginViewController ()
 
+@property (nullable, strong, nonatomic) UITextField *activeTextField;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
@@ -29,15 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
-        // iOS >= 7
-        self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
-        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
-    } else {
-        // iOS < 7
-        self.navigationController.navigationBar.tintColor = kSecondaryTintColor;
-        [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: kTextTintColor}];
-    }
+    self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
     self.navigationItem.title = @"Log In";
 
     // Theming
@@ -61,7 +56,17 @@
                                                  name:kLoginFailureNotification
                                                object:nil];
 
-    [self prepareScrollView];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.activeTextField resignFirstResponder];
 }
 
 - (void)dismiss {
@@ -78,6 +83,14 @@
                                               otherButtonTitles:nil];
         [alert show];
     });
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.activeTextField = textField;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.activeTextField = nil;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -104,34 +117,23 @@
                                                     updateKeychain:[self.rememberMeSwitch isOn]];
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 15.0, 0.0);
-        self.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0.0, 0.0, 15.0, 0.0);
-    }];
+- (void)keyboardDidShow:(NSNotification *)notification {
+    NSDictionary* info = notification.userInfo;
+    CGSize keyboardSize = [info[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
-- (void)resetScrollViewContentPosition:(NSNotification *)notification {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.scrollView.contentInset = UIEdgeInsetsZero;
-        self.scrollView.contentOffset = CGPointMake(0.0, -60.0);
-        self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
-    }];
+- (void)keyboardWillHide:(NSNotification *)notification {
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
 - (IBAction)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)prepareScrollView {
-    CGFloat statusBarHeight = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
-    CGFloat navigationBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
-    UIEdgeInsets insets = UIEdgeInsetsMake(0.0, 0.0, -(statusBarHeight + navigationBarHeight), 0.0);
-    self.scrollView.contentInset = insets;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resetScrollViewContentPosition:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-
 }
 
 - (IBAction)forgotPassword:(id)sender {

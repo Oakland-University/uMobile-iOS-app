@@ -6,23 +6,24 @@
 //  Copyright (c) 2014 Oakland University. All rights reserved.
 //
 
+#import "uMobile-Swift.h"
+
 #import "MainViewController.h"
 #import "PortletViewController.h"
 
 #import "Config.h"
-#import "HeaderView.h"
 #import "LayoutJSON.h"
-#import "TableActivityIndicatorView.h"
 
 #import "Authenticator.h"
 #import "Reachability.h"
 
-@interface MainViewController ()
+@interface MainViewController () <UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *sectionContents;
 @property (nonatomic, strong) NSMutableArray *sectionTitles;
 
 @property (nonatomic, getter = shouldConfigureViewNextApperance) BOOL configureViewNextAppearance;
+@property (nonatomic) BOOL shouldCollapsePortletViewController;
 @property (nonatomic, strong) NSIndexPath *mostRecentlySelectedIndexPath;
 
 @property (nonatomic, strong) TableActivityIndicatorView *tableActivityIndicatorView;
@@ -71,6 +72,9 @@
 
     [self theme];
 
+    self.shouldCollapsePortletViewController = YES;
+    self.splitViewController.delegate = self;
+
     [[Config sharedConfig] checkWithCompletion:^{
         BOOL shouldContinueConfiguration = [self performInitialSetup];
         if (shouldContinueConfiguration) {
@@ -106,15 +110,8 @@
     // Temporarily disable the cell separator lines.
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
-        // iOS >= 7
-        self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
-        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
-    } else {
-        // iOS < 7
-        self.navigationController.navigationBar.tintColor = kSecondaryTintColor;
-        [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: kTextTintColor}];
-    }
+    self.navigationController.navigationBar.barTintColor = kSecondaryTintColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kTextTintColor};
 
     self.navigationItem.title = kTitle;
 }
@@ -168,13 +165,11 @@
 
 - (void)logInOrConfigureView {
     if ([[Authenticator sharedAuthenticator] hasStoredCredentials]) {
-        if (!self.splitViewController) {
-            // Add a loading indication to the navigation bar
-            NSArray *loggingInItems = @[self.loggingInBarButtonItem, self.activityIndicatorBarButtonItem];
-            self.navigationItem.rightBarButtonItems = loggingInItems;
-            [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
-            // implicitly call configureView after a login success notification
-        }
+        // Add a loading indication to the navigation bar
+        NSArray *loggingInItems = @[self.loggingInBarButtonItem, self.activityIndicatorBarButtonItem];
+        self.navigationItem.rightBarButtonItems = loggingInItems;
+        [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
+        // implicitly call configureView after a login success notification
     } else {
         [self configureView];
     }
@@ -193,20 +188,10 @@
     self.sectionTitles = [[NSMutableArray alloc] initWithCapacity:[folders count]];
     self.sectionContents = [[NSMutableArray alloc] init];
 
-    if (!self.splitViewController) {
-        if ([dictJSON[@"user"] isEqualToString:@"guest"]) {
-            [self configureLogInButton];
-        } else {
-            [self configureLogOutButton];
-        }
+    if ([dictJSON[@"user"] isEqualToString:@"guest"]) {
+        [self configureLogInButton];
     } else {
-        UINavigationController *navigationController = self.splitViewController.viewControllers[1];
-        PortletViewController *portletViewController = [navigationController.childViewControllers firstObject];
-        if ([dictJSON[@"user"] isEqualToString:@"guest"]) {
-            [portletViewController configureLogInButton];
-        } else {
-            [portletViewController configureLogOutButton];
-        }
+        [self configureLogOutButton];
     }
 
     Config *config = [Config sharedConfig];
@@ -244,12 +229,6 @@
     [self.tableView reloadData];
 
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-
-    // Select the first portlet by default on iPad
-    if (self.delegate) {
-        NSDictionary *portletInfo = self.sectionContents[0][0];
-        [self.delegate selectedPortlet:portletInfo];
-    }
 }
 
 - (void)configureViewWhenPossible {
@@ -315,26 +294,12 @@
 - (void)handleNetworkChanges {
     // If the "logging in" bar button item is found in a navigation bar, it means the Internet connection was
     // offline when starting the app with saved credentials. Continue logging in if the network is now reachable.
-    if (!self.splitViewController) {
-        if ([self networkIsReachable]) {
-            if ([self.navigationItem.rightBarButtonItems containsObject:self.loggingInBarButtonItem]) {
-                [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
-            } else if ([self.navigationItem.rightBarButtonItems count] == 0) {
-                // The app must have started with no Internet connection nor saved credentials; re-configure the view.
-                [self configureView];
-            }
-        }
-    } else {
-        // The same logic as above but for the PortletViewController
-        UINavigationController *portletNavigationController = (UINavigationController *)self.splitViewController.viewControllers[1];
-        PortletViewController *portletViewController = [portletNavigationController.childViewControllers firstObject];
-        if ([self networkIsReachable]) {
-            if ([portletViewController.navigationItem.rightBarButtonItems
-                 containsObject:portletViewController.loggingInBarButtonItem]) {
-                [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
-            } else if ([portletViewController.navigationItem.rightBarButtonItems count] == 0) {
-                [self configureView];
-            }
+    if ([self networkIsReachable]) {
+        if ([self.navigationItem.rightBarButtonItems containsObject:self.loggingInBarButtonItem]) {
+            [[Authenticator sharedAuthenticator] logInWithStoredCredentials];
+        } else if ([self.navigationItem.rightBarButtonItems count] == 0) {
+            // The app must have started with no Internet connection nor saved credentials; re-configure the view.
+            [self configureView];
         }
     }
 }
@@ -416,8 +381,8 @@
 
     NSDictionary *dict = self.sectionContents[(NSUInteger)indexPath.section][(NSUInteger)indexPath.row];
 
-    tableCell.cellTitle.text = dict[@"title"];
-    tableCell.cellDescription.text = dict[@"description"];
+    tableCell.titleLabel.text = dict[@"title"];
+    tableCell.descriptionLabel.text = dict[@"description"];
 
     // loading image that is saved to phone
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -433,7 +398,7 @@
             image = [UIImage imageNamed:@"Default"];
         }
     }
-    [tableCell.cellImage setImage:image];
+    [tableCell.thumbnailImageView setImage:image];
 
     return tableCell;
 }
@@ -446,15 +411,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Save the indexPath for later, to avoid cells getting stuck with a gray background
     self.mostRecentlySelectedIndexPath = indexPath;
+    self.shouldCollapsePortletViewController = NO;
+}
 
-    NSDictionary *portletInfo = self.sectionContents[(NSUInteger)indexPath.section][(NSUInteger)indexPath.row];
-    if (self.delegate) {
-        [self.delegate selectedPortlet:portletInfo];
-        PortletViewController *portletViewController = (PortletViewController *)self.delegate;
-        if (portletViewController.pc) {
-            [portletViewController.pc dismissPopoverAnimated:YES];
-        }
-    }
+#pragma mark - UISplitViewControllerDelegate
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController
+collapseSecondaryViewController:(UIViewController *)secondaryViewController
+  ontoPrimaryViewController:(UIViewController *)primaryViewController {
+    return self.shouldCollapsePortletViewController;
 }
 
 #pragma mark - Actions
@@ -482,9 +447,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"ShowPortlet"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        PortletViewController *portletViewController = navigationController.childViewControllers.firstObject;
+
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDictionary *dict = self.sectionContents[(NSUInteger)indexPath.section][(NSUInteger)indexPath.row];
-        [[segue destinationViewController] setPortletInfo:dict];
+        [portletViewController setPortletInfo:dict];
     }
 
 }

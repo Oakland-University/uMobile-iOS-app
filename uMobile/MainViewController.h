@@ -26,11 +26,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PortletSelectionDelegate.h"
-#import "TableCell.h"
 
 @interface MainViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
-
-@property (nonatomic, strong) id<PortletSelectionDelegate> delegate;
 
 @end
